@@ -1,0 +1,147 @@
+.admin-panel{
+    background: linear-gradient(180deg, #9cc2fc 40%, #3586ff 80%, #1d76fc)
+}
+
+.midwest-panel{
+    background: #22477e;
+    color: #ffffff;
+}
+
+h1{
+    margin-top: 10px;
+}
+
+a{
+    color:#b57647;
+}
+
+.active a{
+    color: #ffffff;
+}
+
+.admin-container{
+    position: absolute;
+    width: 400px;
+    height: 260px;
+    top: 50%;
+    left: 50%;
+    margin: -125px 0 0 -200px;
+    background: #f8f8f8;
+    text-align: center;
+    border: 2px solid #3d3d3d;
+}
+
+.fa{
+    margin-right: 8px;
+    padding: 4px;    
+}
+
+input[type=email], input[type=password]{
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=login]{
+    background: #1d76fc;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 8px;
+    text-align: center;
+    width: 60px;
+    margin-top: 10px;
+}
+
+input[type=login]:hover{
+    background: #3f8cff;
+}
+
+.password-reset{
+    font-size: 10px;
+    text-align: left;
+    margin-left: 110px;
+}
+
+.title h1{
+    text-align: center;
+    margin-top: 40px;
+    font-size: 45px;   
+}
+
+.database-applications .admin-title{
+    font-size: 40px;
+}
+
+.db-container{
+    margin-top: 60px;
+}
+
+.db-container h2{
+    display: inline;
+    padding: 40px;
+    margin: 20px;
+    background: #e7e7e7;
+    border-bottom: 2px solid #000000;  
+    border-radius: 5px;
+    text-shadow: 2px 2px #ffffff;
+}
+
+.db-container h2:hover{
+    background: #dbdbdb;    
+}
+
+.database-applications{
+    position: absolute;
+    width: 750px;
+    height: 260px;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -375px;
+    background: #f8f8f8;
+    text-align: center;
+    border: 2px solid #3d3d3d;
+}
+
+.menu h2{
+    text-align: center;
+    border: 1px solid #000000;
+    margin-right: 30px;
+    color: #e38425;
+    background: #fffaf7;
+    display: inline;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+}
+
+.menu{
+    float:left;
+}
+
+.search{
+    float: right;
+}
+
+.menu h2:hover{
+    color: #b57647;
+    background: #fffaf7;
+}
+
+.menu h2.active{
+    background: #b57647;
+    color: #ffffff;
+}
+
+.active:after{
+    content: "\2193";
+ }
+
+.sidebar{
+    border-right: 2px solid #ffffff;
+}

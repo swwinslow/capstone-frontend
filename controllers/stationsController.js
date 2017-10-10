@@ -6,4 +6,6 @@ app.controller('stationsController', function($scope) {
           console.log("helooo");
         }
 
+        /// this is where the scripts are going
+
 });
