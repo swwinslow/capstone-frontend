@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.js"> </script>
+<body>
+
+  <script>
+  var app = angular.module('myApp', ['ngRoute']);
+
+  </script>
+
+  <script src="controllers/stationsController.js"></script>
+
+  <script src="controllers/popularController.js"></script>
+
+  <script src="config/routes.js"></script>
+
+
+
+
+<div ng-app="myApp">
+  <p>Name : <input type="text" ng-model="name"></p>
+  <h1>Hello {{name}}</h1>
+
+  <div ng-controller='stationsController'>
+    <h1> This is the index page </h1>
+  </div>
+</div>
+
+</body>
+</html>
