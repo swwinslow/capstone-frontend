@@ -1,15 +1,15 @@
-app.config(function ($routeProvider){
-  $routeProvider.
-  when('/', {
-    controller: 'stationsController',
-    templateURL: 'views/stations.html'
-  }).
-  when('/popular', {
-    controller: 'popularController',
-    templateURL: 'views/popular.html'
-  }).
-  otherwise({
-    controller: 'stationsController',
-    templateURL: 'views/404.html'
-  });
+app.config(['$routeProvider', function($routeProvider) {
+$routeProvider
+.when("/", {
+    templateUrl : "views/stations.html",
+    controller : "stationsController"
+})
+.when("/popular", {
+    templateUrl : "views/popular.html",
+    controller: "popularController"
+})
+.otherwise({
+  templateUrl : "views/404.html",
+  controller: "404Controller"
 });
+}]);

@@ -1,0 +1,45 @@
+<div ng-controller='stationsController'>
+
+
+  <h1> This is the index page </h1>
+  <div class="container">
+  <div class="row">
+    <div class="col-4 sidebar">
+      <button ng-click="myFun()" > Click Me! </button>
+
+
+      <form>
+        Filter:
+        <select ng-model="myFilter" ng-click="myFun()">
+          <option value="all">All
+          <option value="genre">Genre
+          <option value="type">Type
+          <option value="ownership">Ownership
+          <option value="state">State
+        </select>
+        <br>
+
+          <div ng-show="showMe">
+            Genre:
+            <select ng-model="myFilter">
+              <option value="all">All
+              <option value="country">Country
+              <option value="jazz">Jazz
+              <option value="hiphop">HipHop
+            </select>
+          </div>
+        Status:
+        <select ng-model="myStatus">
+          <option value="active">Active
+          <option value="pending">Pending
+          <option value="deleted">Deleted
+        </select>
+      </form>
+    </div>
+
+    <div class="col-8">
+
+    </div>
+  </div>
+</div>
+</div>

@@ -1,80 +1,38 @@
 <!DOCTYPE html>
-<html lang="en-US">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.js"> </script>
-<link rel="stylesheet" type="text/css" href="grid/simple-grid.css">
+<html lang="en-US" ng-app="myApp">
+<script src="js/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"> </script>
+<!-- <link rel="stylesheet" type="text/css" href="grid/simple-grid.css"> -->
   <link rel="stylesheet" type="text/css" href="styles/style.css">
-<body>
 
   <script>
   var app = angular.module('myApp', ['ngRoute']);
 
+  app.controller("londonCtrl", function ($scope) {
+    $scope.msg = "I love London";
+    console.log('this is the controller');
+});
+
+
   </script>
+  <!-- <script src="config/routes.js"></script> -->
+
+  <script src="factories/api.js"></script>
 
   <script src="controllers/stationsController.js"></script>
 
   <script src="controllers/popularController.js"></script>
 
-  <script src="config/routes.js"></script>
-
-  <script src="factories/api.js"></script>
-
+  <script src="controllers/404Controller.js"></script>
+<body>
 
 
 
-<div ng-app="myApp">
-  <p>Name : <input type="text" ng-model="name"></p>
-  <h1>Hello {{name}}</h1>
-
-  <div ng-controller='stationsController'>
-
-
-    <h1> This is the index page </h1>
-    <div class="container">
-    <div class="row">
-      <div class="col-4 sidebar">
-        <button ng-click="myFun()" > Click Me! </button>
-
-
-        <form>
-          Filter:
-          <select ng-model="myFilter" ng-click="myFun()">
-            <option value="all">All
-            <option value="genre">Genre
-            <option value="type">Type
-            <option value="ownership">Ownership
-            <option value="state">State
-          </select>
-          <br>
-
-            <div ng-show="showMe">
-              Genre:
-              <select ng-model="myFilter">
-                <option value="all">All
-                <option value="country">Country
-                <option value="jazz">Jazz
-                <option value="hiphop">HipHop
-              </select>
-            </div>
-          Status:
-          <select ng-model="myStatus">
-            <option value="active">Active
-            <option value="pending">Pending
-            <option value="deleted">Deleted
-          </select>
-        </form>
-      </div>
-
-      <div class="col-8">
-
-      </div>
-    </div>
-  </div>
-  </div>
+  <div ng-view></div>
 
 
 
-</div>
+
 
 </body>
 </html>
