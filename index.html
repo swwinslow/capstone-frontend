@@ -8,14 +8,10 @@
   <script>
   var app = angular.module('myApp', ['ngRoute']);
 
-  app.controller("londonCtrl", function ($scope) {
-    $scope.msg = "I love London";
-    console.log('this is the controller');
-});
 
 
   </script>
-  <!-- <script src="config/routes.js"></script> -->
+  <script src="config/routes.js"></script>
 
   <script src="factories/api.js"></script>
 
@@ -24,13 +20,15 @@
   <script src="controllers/popularController.js"></script>
 
   <script src="controllers/404Controller.js"></script>
+  <script src="views/popular.html"></script>
+  <script src="views/stations.html"></script>
+  <script src="views/404.html"></script>
+
+
+
 <body>
 
-
-
   <div ng-view></div>
-
-
 
 
 

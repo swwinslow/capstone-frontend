@@ -6,6 +6,10 @@ app.controller('stationsController', function($scope) {
           console.log("helooo");
         }
 
+        // APIFactory.getAllStations().then(function (response){
+        //     console.log(response);
+        // });
+
         /// this is where the scripts are going
 
 });
