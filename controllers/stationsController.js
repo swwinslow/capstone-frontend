@@ -8,7 +8,7 @@ app.controller('stationsController', function($scope, APIFactory) {
 
         APIFactory.getAllStations().then(function (response){
             console.log(response.data.data);
-            $scope.data = response.data.data;
+            $scope.data = response.data.active;
         });
 
         /// this is where the scripts are going
