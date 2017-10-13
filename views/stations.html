@@ -1,24 +1,86 @@
-<h1> This is the stations page </h1>
 
-<table border="1">
-    <tr ng-repeat="x in data">
-        <td>{{x.frequency}}</td>
-        <td>{{x.long_name}}</td>
-        <td>{{x.short_name}}</td>
-        <td>{{x.city}}</td>
-        <td>{{x.state}}</td>
-        <td>{{x.slogan}}</td>
-        <td>{{x.type}}</td>
-        <td>{{x.genre}}</td>
-        <td><button> Edit </button> <td>
-          <td><button> Delete </button> <td>
+<h1 style="text-align:center"> Midwest Application Stations</h1>
+
+<div ng-controller='stationsController'>
+  <div class="container">
+    <div class="row">
+      <div class="col-4 menu">
+        <a href="#">Admin Panel</a><br>
+        <a href="#" class="stations-title active">Stations</a><br>
+        <a href="#">Popular</a>
+      </div>
+      <div class="col-8 filters">
+        <form>
+          <h2>Status:</h2>
+            <button value="active">Active</button>
+            <button value="pending">Pending</button>
+            <button value="deleted">Deleted</button>
+
+          <div>
+            <h2>Filters:</h2>
+            <div class="container">
+              <div class="row">
+                <div class="col-4">
+                  <h3 ng-click="myFuncGenre()">Genre:</h3>
+                  <div ng-show="showGenre">
+                    <input type="checkbox" ng-model="checkboxGenre.hiphop" ng-checked="true"> Hip-hop<br/>
+                    <input type="checkbox" ng-model="checkboxGenre.rock" ng-checked="true"> Rock<br/>
+                    <input type="checkbox" ng-model="checkboxGenre.alternative" ng-checked="true"> Alternative<br/>
+                    <input type="checkbox" ng-model="checkboxGenre.country" ng-checked="true"> Country<br/>
+                    <input type="checkbox" ng-model="checkboxGenre.hits" ng-checked="true"> Hits<br/>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <h3 ng-click="myFuncOwnership()">Ownership:</h3>
+                  <div ng-show="showOwnership">
+                    <input type="checkbox" ng-model="checkboxOwnership.college" ng-checked="true"> College<br/>
+                    <input type="checkbox" ng-model="checkboxOwnership.commercial" ng-checked="true"> Commercial<br/>
+                    <input type="checkbox" ng-model="checkboxOwnership.listener-supported" ng-checked="true"> Listener Supported<br/>
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <h3 ng-click="myFuncGeographical()">Geographical:</h3>
+                  <div ng-show="showGeographical">
+                      <input type="checkbox" ng-model="checkboxGeographical.minnesota" ng-checked="true"> Minnesota<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.wisconsin" ng-checked="true"> Wisconsin<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.iowa" ng-checked="true"> Iowa<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.missouri" ng-checked="true"> Missouri<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.illinois" ng-checked="true"> Illinois<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.michigan" ng-checked="true"> Michigan<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.indiana" ng-checked="true"> Indiana<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.ohio" ng-checked="true"> Ohio<br/>
+                      <input type="checkbox" ng-model="checkboxGeographical.ontario" ng-checked="true"> Ontario<br/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-
-
-
-
-    </tr>
-</table>
-
-<p> Here are stations </p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table border="1">
+          <tr ng-repeat="x in data">
+              <td>{{x.frequency}}</td>
+              <td>{{x.long_name}}</td>
+              <td>{{x.short_name}}</td>
+              <td>{{x.city}}</td>
+              <td>{{x.state}}</td>
+              <td>{{x.slogan}}</td>
+              <td>{{x.type}}</td>
+              <td>{{x.genre}}</td>
+              <td><button> Edit </button></td>
+              <td><button> Delete </button></td>
+          </tr>
+      </table>
+    </div>
+  </div>
+</div>

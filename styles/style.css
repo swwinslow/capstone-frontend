@@ -1,3 +1,4 @@
+/* ADMIN PANEL */
 .admin-panel{
     background: linear-gradient(180deg, #9cc2fc 40%, #3586ff 80%, #1d76fc)
 }
@@ -33,7 +34,7 @@ a{
 
 .fa{
     margin-right: 8px;
-    padding: 4px;    
+    padding: 4px;
 }
 
 input[type=email], input[type=password]{
@@ -67,10 +68,12 @@ input[type=login]:hover{
     margin-left: 110px;
 }
 
+/* ADMIN DATABASE SELECTION */
+
 .title h1{
     text-align: center;
     margin-top: 40px;
-    font-size: 45px;   
+    font-size: 45px;
 }
 
 .database-applications .admin-title{
@@ -86,13 +89,13 @@ input[type=login]:hover{
     padding: 40px;
     margin: 20px;
     background: #e7e7e7;
-    border-bottom: 2px solid #000000;  
+    border-bottom: 2px solid #000000;
     border-radius: 5px;
     text-shadow: 2px 2px #ffffff;
 }
 
 .db-container h2:hover{
-    background: #dbdbdb;    
+    background: #dbdbdb;
 }
 
 .database-applications{
@@ -107,41 +110,27 @@ input[type=login]:hover{
     border: 2px solid #3d3d3d;
 }
 
-.menu h2{
-    text-align: center;
-    border: 1px solid #000000;
-    margin-right: 30px;
-    color: #e38425;
-    background: #fffaf7;
-    display: inline;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px; 
+/* STATIONS PAGE */
+.menu a{
+  text-align: center;
+  border: 1px solid #000000;
+  color: #e38425;
+  background: #fffaf7;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 10px;
 }
 
-.menu{
-    float:left;
+.filters h2{
+  font-size: 18px;
 }
 
-.search{
-    float: right;
+.filters h3{
+  font-size: 16px;
 }
 
-.menu h2:hover{
-    color: #b57647;
-    background: #fffaf7;
-}
-
-.menu h2.active{
-    background: #b57647;
-    color: #ffffff;
-}
-
-.active:after{
-    content: "\2193";
- }
-
-.sidebar{
-    border-right: 2px solid #ffffff;
+td{
+  padding: 3px;
 }

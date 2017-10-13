@@ -1,9 +1,18 @@
 app.controller('stationsController', function($scope, APIFactory) {
-      console.log("hello");
-        $scope.showMe = false;
-        $scope.myFun = function(){
-          $scope.showMe = !$scope.showMe;
-          console.log("helooo");
+        $scope.showGenre = false;
+        $scope.showOwnership = false;
+        $scope.showGeographical = false;
+
+        $scope.myFuncGenre = function(){
+          $scope.showGenre = !$scope.showGenre;
+        }
+
+        $scope.myFuncOwnership = function(){
+          $scope.showOwnership = !$scope.showOwnership;
+        }
+
+        $scope.myFuncGeographical = function(){
+          $scope.showGeographical = !$scope.showGeographical;
         }
 
         APIFactory.getAllStations().then(function (response){

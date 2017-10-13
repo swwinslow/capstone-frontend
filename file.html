@@ -43,3 +43,98 @@
   </div>
 </div>
 </div>
+
+
+
+
+<h1> This is the stations page </h1>
+
+
+<div ng-controller='stationsController'>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <button ng-click="myFun()" > Click Me! </button>
+
+        <form>
+          <!-- These needs changed to buttons -->
+          Status:
+          <select ng-model="myStatus">
+            <option value="active">Active
+            <option value="pending">Pending
+            <option value="deleted">Deleted
+          </select>
+
+          <!-- Figure out select automatically all -->
+          <div>
+            Filter By:
+            <select ng-model="myFilter">
+              <option value="all">All
+              <option value="genre">Genre
+              <option value="ownership">Ownership
+              <option value="state">State
+            </select>
+          </div>
+          <br>
+
+          <div ng-if="myFilter == 'genre'">
+            Genre:
+            <select ng-model="myFilter">
+              <option value="all">All
+              <option value="hiphop">Hip-Hop
+              <option value="rock">Rock
+              <option value="alternative">Alternative
+              <option value="country">Country
+              <option value="hits">Hits
+            </select>
+          </div>
+
+          <div ng-if="myFilter == 'ownership'">
+            Ownership:
+            <select ng-model="myFilter">
+              <option value="all">All
+              <option value="college">College
+              <option value="commercial">Commercial
+              <option value="listener-supported">Listener Supporter
+            </select>
+          </div>
+
+          <div ng-if="myFilter == 'state'">
+            State:
+            <select ng-model="myFilter">
+              <option value="all">All
+              <option value="minnesota">Minnesota
+              <option value="wisconsin">Wisconsin
+              <option value="iowa">Iowa
+              <option value="missouri">Missouri
+              <option value="illinois">Illinois
+              <option value="michigan">Michigan
+              <option value="indiana">Indiana
+              <option value="ohio">Ohio
+              <option value="ontario">Ontario
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<table border="1">
+    <tr ng-repeat="x in data">
+        <td>{{x.frequency}}</td>
+        <td>{{x.long_name}}</td>
+        <td>{{x.short_name}}</td>
+        <td>{{x.city}}</td>
+        <td>{{x.state}}</td>
+        <td>{{x.slogan}}</td>
+        <td>{{x.type}}</td>
+        <td>{{x.genre}}</td>
+        <td><button> Edit </button></td>
+        <td><button> Delete </button></td>
+    </tr>
+</table>
+
+<p> Here are stations </p>
