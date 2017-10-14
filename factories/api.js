@@ -6,5 +6,9 @@ app.factory('APIFactory', function($http){
   data.getAllStations = function() {
     return $http.get(baseURL + 'GetAllStations.php');
   }
+
+  data.getInformation = function() {
+    return $http.get(baseURL + 'GetInformation.php');
+  }
   return data;
 });

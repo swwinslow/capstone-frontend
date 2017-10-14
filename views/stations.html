@@ -22,36 +22,22 @@
               <div class="row">
                 <div class="col-4">
                   <h3 ng-click="myFuncGenre()">Genre:</h3>
-                  <div ng-show="showGenre">
-                    <input type="checkbox" ng-model="checkboxGenre.hiphop" ng-checked="true"> Hip-hop<br/>
-                    <input type="checkbox" ng-model="checkboxGenre.rock" ng-checked="true"> Rock<br/>
-                    <input type="checkbox" ng-model="checkboxGenre.alternative" ng-checked="true"> Alternative<br/>
-                    <input type="checkbox" ng-model="checkboxGenre.country" ng-checked="true"> Country<br/>
-                    <input type="checkbox" ng-model="checkboxGenre.hits" ng-checked="true"> Hits<br/>
+                  <div ng-show="showGenre" ng-repeat="genre in genreArray">
+                    <input type="checkbox" ng-model="genre"  ng-checked="true"> {{genre}}<br/>
                   </div>
                 </div>
 
                 <div class="col-4">
                   <h3 ng-click="myFuncOwnership()">Ownership:</h3>
-                  <div ng-show="showOwnership">
-                    <input type="checkbox" ng-model="checkboxOwnership.college" ng-checked="true"> College<br/>
-                    <input type="checkbox" ng-model="checkboxOwnership.commercial" ng-checked="true"> Commercial<br/>
-                    <input type="checkbox" ng-model="checkboxOwnership.listener-supported" ng-checked="true"> Listener Supported<br/>
+                  <div ng-show="showOwnership" ng-repeat="owner in typeArray">
+                    <input type="checkbox" ng-model="owner"  ng-checked="true"> {{owner}}<br/>
                   </div>
                 </div>
 
                 <div class="col-4">
                   <h3 ng-click="myFuncGeographical()">Geographical:</h3>
-                  <div ng-show="showGeographical">
-                      <input type="checkbox" ng-model="checkboxGeographical.minnesota" ng-checked="true"> Minnesota<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.wisconsin" ng-checked="true"> Wisconsin<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.iowa" ng-checked="true"> Iowa<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.missouri" ng-checked="true"> Missouri<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.illinois" ng-checked="true"> Illinois<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.michigan" ng-checked="true"> Michigan<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.indiana" ng-checked="true"> Indiana<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.ohio" ng-checked="true"> Ohio<br/>
-                      <input type="checkbox" ng-model="checkboxGeographical.ontario" ng-checked="true"> Ontario<br/>
+                  <div ng-show="showGeo" ng-repeat="state in stateArray">
+                      <input type="checkbox" ng-model="state"  ng-checked="true"> {{state}}<br/>
                   </div>
                 </div>
               </div>
