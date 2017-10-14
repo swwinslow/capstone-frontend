@@ -1,10 +1,13 @@
-app.controller('stationsController', function($scope, APIFactory) {
+app.controller('stationsController', function($scope, $timeout,  APIFactory, $rootScope) {
 
         $scope.showGeo = false;
         $scope.showGenre = false;
         $scope.showOwnership = false;
         $scope.showMe = false;
 
+        $scope.showActive = true;
+        $scope.showPending = true;
+        $scope.showDeleted = true;
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -24,8 +27,9 @@ app.controller('stationsController', function($scope, APIFactory) {
         }
 
         APIFactory.getAllStations().then(function (response){
-            console.log(response.data.data);
-            $scope.data = response.data.active;
+            $scope.activeStations = response.data.active;
+            $scope.pendingStations = response.data.pending;
+            $scope.deletedStations = response.data.deleted;
         });
 
         APIFactory.getInformation().then(function (response){

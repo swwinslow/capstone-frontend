@@ -1,4 +1,9 @@
-app.controller('popularController', function($scope) {
+app.controller('popularController', function($scope, APIFactory) {
 
-  console.log('this is the controller for the popular');
+  APIFactory.getPopular().then(function (response){
+      console.log(response.data.data);
+      $scope.popularArray = response.data.data;
+  });
+
+
 });

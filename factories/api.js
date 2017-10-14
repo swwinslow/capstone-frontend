@@ -10,5 +10,9 @@ app.factory('APIFactory', function($http){
   data.getInformation = function() {
     return $http.get(baseURL + 'GetInformation.php');
   }
+
+  data.getPopular = function(){
+    return $http.get(baseURL + '/GetAllPopular.php');
+  }
   return data;
 });

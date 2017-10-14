@@ -1,1 +1,15 @@
-<h2> This is the popular HTML Page </h2>
+<h1> Votes </h1> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table border="1">
+          <tr ng-repeat="x in popularArray">
+              <td>{{x.votes}}</td>
+              <td>{{x.long_name}}</td>
+              <td>{{x.short_name}}</td>
+          </tr>
+      </table>
+    </div>
+  </div>
+</div>

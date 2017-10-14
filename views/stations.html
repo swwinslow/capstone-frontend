@@ -12,9 +12,9 @@
       <div class="col-8 filters">
         <form>
           <h2>Status:</h2>
-            <button value="active">Active</button>
-            <button value="pending">Pending</button>
-            <button value="deleted">Deleted</button>
+            <button ng-click="showActiveFunc()">Active</button>
+            <button ng-click="showPendingFunc()">Pending</button>
+            <button ng-click="showDeletedFunc()">Deleted</button>
 
           <div>
             <h2>Filters:</h2>
@@ -49,20 +49,22 @@
   </div>
 </div>
 
+<h1>{{showActive}} </h1>
+
 
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-12" ng-show='showActive'>
       <table border="1">
-          <tr ng-repeat="x in data">
-              <td>{{x.frequency}}</td>
-              <td>{{x.long_name}}</td>
-              <td>{{x.short_name}}</td>
-              <td>{{x.city}}</td>
-              <td>{{x.state}}</td>
-              <td>{{x.slogan}}</td>
-              <td>{{x.type}}</td>
-              <td>{{x.genre}}</td>
+          <tr ng-repeat="station in activeStations">
+              <td>{{station.frequency}}</td>
+              <td>{{station.long_name}}</td>
+              <td>{{station.short_name}}</td>
+              <td>{{station.city}}</td>
+              <td>{{station.state}}</td>
+              <td>{{station.slogan}}</td>
+              <td>{{station.type}}</td>
+              <td>{{station.genre}}</td>
               <td><button> Edit </button></td>
               <td><button> Delete </button></td>
           </tr>
