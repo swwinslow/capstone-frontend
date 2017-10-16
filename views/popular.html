@@ -1,15 +1,40 @@
-<h1> Votes </h1> 
+<div ng-controller='popularController' class="popular-page">
+<h1 style="text-align:center"> Midwest Application Popular</h1>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <table border="1">
-          <tr ng-repeat="x in popularArray">
-              <td>{{x.votes}}</td>
-              <td>{{x.long_name}}</td>
-              <td>{{x.short_name}}</td>
-          </tr>
-      </table>
+  <div class="container">
+    <div class="row">
+      <div class="col-3 menu">
+        <div class="menu-item"><a href="#">Admin Panel</a></div>
+        <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/stations" class="stations">Stations</a></div>
+        <div class="menu-item active"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
+      </div>
+      <div class="col-9 popular-table">
+        <form>
+          <h2>Sort By:</h2>
+            <button ng-click="sortByCountFunc()">Count</button>
+            <button ng-click="sortByNameFunc()">Name</button>
+            <button ng-click="sortByAbbFunc()">Abbreviation</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table>
+          <thead>
+            <th>Count</th>
+            <th>Name</th>
+            <th>Abbreviation</th>
+          </thead>
+            <tr ng-repeat="x in popularArray">
+                <td>{{x.votes}}</td>
+                <td>{{x.long_name}}</td>
+                <td>{{x.short_name}}</td>
+            </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
