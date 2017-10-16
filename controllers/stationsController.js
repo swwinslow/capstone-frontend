@@ -6,12 +6,29 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.showMe = false;
 
         $scope.showActive = true;
-        $scope.showPending = true;
-        $scope.showDeleted = true;
+        $scope.showPending = false;
+        $scope.showDeleted = false;
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
-          console.log("helooo");
+        }
+
+        $scope.showActiveFunc = function(){
+          $scope.showActive = true;
+          $scope.showPending = false;
+          $scope.showDeleted = false;
+        }
+
+        $scope.showPendingFunc = function(){
+          $scope.showActive = false;
+          $scope.showPending = true;
+          $scope.showDeleted = false;
+        }
+
+        $scope.showDeletedFunc = function(){
+          $scope.showActive = false;
+          $scope.showPending = false;
+          $scope.showDeleted = true;
         }
 
         $scope.myFuncGeographical = function(){

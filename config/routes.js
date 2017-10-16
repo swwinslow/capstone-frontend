@@ -4,6 +4,10 @@ app.config(['$routeProvider', function($routeProvider) {
       templateUrl : "views/stations.html",
       controller : "stationsController"
   })
+  .when("/stations", {
+      templateUrl : "views/stations.html",
+      controller : "stationsController"
+  })
   .when("/popular", {
       templateUrl : "views/popular.html",
       controller: "popularController"
