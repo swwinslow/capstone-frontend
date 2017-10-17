@@ -21,7 +21,7 @@
 
             <div class="col-6 status-container">
               <h2>Search:</h2>
-                <input type="search" name="googlesearch">
+                <input type="search" ng-model="searchKeyword">
             </div>
 
             <div class="filter-container">
@@ -55,23 +55,25 @@
 
 
 
-  <div class="container" ng-show='showActive'>
+  <div class="container">
     <div class="row">
       <div class="col-12" >
         <table>
           <thead>
-            <th>Frequency</th>
-            <th>Name</th>
-            <th>Abbreviation</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Ownership</th>
-            <th>Genre</th>
-            <th>Geographical</th>
+            <th ng-click="sortMethod('frequency')">Frequency</th>
+            <th ng-click="sortMethod('long_name')">Name</th>
+            <th ng-click="sortMethod('short_name')">Abbreviation</th>
+            <th ng-click="sortMethod('city')">City</th>
+            <th ng-click="sortMethod('state')">State</th>
+            <th ng-click="sortMethod('slogan')">Slogan</th>
+            <th ng-click="sortMethod('type')">Type</th>
+            <th ng-click="sortMethod('genre')">Genre</th>
             <th>Edit</th>
             <th>Delete</th>
           </thead>
-            <tr ng-repeat="station in activeStations">
+
+
+            <tr ng-repeat="station in activeStations | filter: searchKeyword | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
                 <td>{{station.frequency}}</td>
                 <td>{{station.long_name}}</td>
                 <td>{{station.short_name}}</td>
@@ -83,76 +85,44 @@
                 <td><button> Edit </button></td>
                 <td class="delete-btn"><button> Delete </button></td>
             </tr>
+
+
+
+            <tr ng-repeat="station in pendingStations" ng-show='showPending'>
+                <td>{{station.frequency}}</td>
+                <td>{{station.long_name}}</td>
+                <td>{{station.short_name}}</td>
+                <td>{{station.city}}</td>
+                <td>{{station.state}}</td>
+                <td>{{station.slogan}}</td>
+                <td>{{station.type}}</td>
+                <td>{{station.genre}}</td>
+                <td><button> Edit </button></td>
+                <td class="delete-btn"><button> Delete </button></td>
+            </tr>
+
+
+            <tr ng-repeat="station in deletedStations" ng-show='showDeleted'>
+                <td>{{station.frequency}}</td>
+                <td>{{station.long_name}}</td>
+                <td>{{station.short_name}}</td>
+                <td>{{station.city}}</td>
+                <td>{{station.state}}</td>
+                <td>{{station.slogan}}</td>
+                <td>{{station.type}}</td>
+                <td>{{station.genre}}</td>
+                <td><button> Edit </button></td>
+                <td class="delete-btn"><button> Delete </button></td>
+            </tr>
+
+
         </table>
       </div>
     </div>
   </div>
 
-  <div class="container" ng-show='showPending'>
-    <div class="row">
-      <div class="col-12" >
-        <table>
-          <thead>
-            <th>Frequency</th>
-            <th>Name</th>
-            <th>Abbreviation</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Ownership</th>
-            <th>Genre</th>
-            <th>Geographical</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </thead>
-            <tr ng-repeat="station in pendingStations">
-                <td>{{station.frequency}}</td>
-                <td>{{station.long_name}}</td>
-                <td>{{station.short_name}}</td>
-                <td>{{station.city}}</td>
-                <td>{{station.state}}</td>
-                <td>{{station.slogan}}</td>
-                <td>{{station.type}}</td>
-                <td>{{station.genre}}</td>
-                <td><button> Edit </button></td>
-                <td class="delete-btn"><button> Delete </button></td>
-            </tr>
-        </table>
-      </div>
-    </div>
-  </div>
 
-  <div class="container" ng-show='showDeleted'>
-    <div class="row">
-      <div class="col-12" >
-        <table>
-          <thead>
-            <th>Frequency</th>
-            <th>Name</th>
-            <th>Abbreviation</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Ownership</th>
-            <th>Genre</th>
-            <th>Geographical</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </thead>
-            <tr ng-repeat="station in deletedStations">
-                <td>{{station.frequency}}</td>
-                <td>{{station.long_name}}</td>
-                <td>{{station.short_name}}</td>
-                <td>{{station.city}}</td>
-                <td>{{station.state}}</td>
-                <td>{{station.slogan}}</td>
-                <td>{{station.type}}</td>
-                <td>{{station.genre}}</td>
-                <td><button> Edit </button></td>
-                <td class="delete-btn"><button> Delete </button></td>
-            </tr>
-        </table>
-      </div>
-    </div>
-  </div>
+
 
 
 

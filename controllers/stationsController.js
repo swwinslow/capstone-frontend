@@ -9,6 +9,9 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.showPending = false;
         $scope.showDeleted = false;
 
+        $scope.orderBySearch = '';
+        $scope.orderByTerm = true;
+
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
         }
@@ -29,6 +32,15 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
           $scope.showActive = false;
           $scope.showPending = false;
           $scope.showDeleted = true;
+        }
+
+        $scope.sortMethod = function(name){
+          console.log('lol');
+          if($scope.orderBySearch == name){
+            $scope.orderByTerm = !$scope.orderByTerm;
+          } else {
+            $scope.orderBySearch = name;
+          }
         }
 
         $scope.myFuncGeographical = function(){
