@@ -4,6 +4,12 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.showGenre = false;
         $scope.showOwnership = false;
         $scope.showMe = false;
+        $scope.showicon1 = true;
+        $scope.showicon2 = false;
+        $scope.showicon3 = false;
+        $scope.showicon4 = true;
+        $scope.showicon5 = false;
+        $scope.showicon6 = true;
 
         $scope.showActive = true;
         $scope.showPending = false;
@@ -45,14 +51,20 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
 
         $scope.myFuncGeographical = function(){
           $scope.showGeo = !$scope.showGeo;
+          $scope.showicon1 = !$scope.showicon1;
+          $scope.showicon2 = !$scope.showicon2;
         }
 
         $scope.myFuncGenre = function(){
           $scope.showGenre = !$scope.showGenre;
+          $scope.showicon5 = !$scope.showicon5;
+          $scope.showicon6 = !$scope.showicon6;
         }
 
         $scope.myFuncOwnership = function(){
           $scope.showOwnership = !$scope.showOwnership;
+          $scope.showicon3 = !$scope.showicon3;
+          $scope.showicon4 = !$scope.showicon4;
         }
 
         APIFactory.getAllStations().then(function (response){
