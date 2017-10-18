@@ -8,14 +8,17 @@
         <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/stations" class="stations">Stations</a></div>
         <div class="menu-item active"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
       </div>
-      <div class="col-9">
+      <div class="col-9 filters popular">
+        <h2>Search:<input type="search" ng-model="searchKeyword"></h2>
+      </div>
+      <div class="col-9 popular-table">
         <table>
           <thead>
             <th ng-click="sortMethod('votes')">Count</th>
             <th ng-click="sortMethod('long_name')">Name</th>
             <th ng-click="sortMethod('short_name')">Abbreviation</th>
           </thead>
-            <tr ng-repeat="x in popularArray | filter: searchKeyword | orderBy: orderBySearch:orderByTerm">
+            <tr ng-repeat="x in popularArray | filter: searchKeyword | filter: searchKeyword | orderBy: orderBySearch:orderByTerm">
                 <td>{{x.votes}}</td>
                 <td>{{x.long_name}}</td>
                 <td>{{x.short_name}}</td>

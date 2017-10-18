@@ -245,12 +245,11 @@ td.delete-btn{
   background: linear-gradient(#e9e9e9, #afafaf); /* Standard syntax */
 }
 
-.popular-table h2{
+.filters.popular h2{
+  padding-top: 12px;
+  padding-left: 15px;
   font-size: 18px;
 }
-
-.popular-table form{
-  padding-left: 20px;
-  padding-bottom: 20px;
-  padding-top: 7px;
-}
+ h2 input{
+   border: 1px solid #1f3b6d;
+ }
