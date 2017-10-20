@@ -18,6 +18,10 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.orderBySearch = '';
         $scope.orderByTerm = true;
 
+        $scope.deleteStation = function ($index, station) {
+          $scope.activeStations.splice($index, 1);
+        };
+
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
         }
