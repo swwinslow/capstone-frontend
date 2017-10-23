@@ -68,42 +68,21 @@
           </thead>
 
           <tr ng-repeat="station in activeStations | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
-            <td><input type="text" value={{station.frequency}} style="width:40px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.long_name}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.short_name}} style="width:60px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.city}} style="width:80px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.state}} style="width:30px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.slogan}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.type}} style="width:120px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.genre}} style="width:80px" ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><button ng-click="edit=!edit"> Edit </button></td>
+            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.short_name" style="width:60px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.city" style="width:80px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.state" style="width:30px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.slogan" ng-disabled="station.edit" required ng-init="edit=true"></td>
+            <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td>
+              <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
+              <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
+
+            </td>
+
             <td class="delete-btn"><button ng-click="deleteStation($index, station)" > Delete </button></td>
-          </tr>
-
-          <tr ng-repeat="station in pendingStations" ng-show='showPending'>
-            <td><input type="text" value={{station.frequency}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.long_name}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.short_name}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.city}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.state}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.slogan}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.type}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.genre}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><button ng-click="edit=!edit"> Edit </button></td>
-            <td class="delete-btn"><button> Delete </button></td>
-          </tr>
-
-          <tr ng-repeat="station in deletedStations" ng-show='showDeleted'>
-            <td><input type="text" value={{station.frequency}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.long_name}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.short_name}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.city}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.state}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.slogan}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.type}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><input type="text" value={{station.genre}} ng-disabled="edit" required ng-init="edit=true"></td>
-            <td><button ng-click="edit=!edit"> Edit </button></td>
-            <td class="delete-btn"><button> Delete </button></td>
           </tr>
         </table>
       </div>

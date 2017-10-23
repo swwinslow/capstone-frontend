@@ -18,6 +18,8 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.orderBySearch = '';
         $scope.orderByTerm = true;
 
+
+
         $scope.deleteStation = function ($index, station) {
           $scope.activeStations.splice($index, 1);
         };
@@ -75,7 +77,20 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
             $scope.activeStations = response.data.active;
             $scope.pendingStations = response.data.pending;
             $scope.deletedStations = response.data.deleted;
+
+            for(var i = 0; i < $scope.activeStations.length; i++){
+                $scope.activeStations[i].edit = true;
+            }
         });
+
+        $scope.editStation = function(id){
+          //KRISTEN... THIS IS WHAT YOU NEED TO DO WITH DELTEING THE STATIONS
+          for(var i = 0; i < $scope.activeStations.length; i++){
+            if($scope.activeStations[i].id == id){
+              $scope.activeStations[i].edit = false;
+            }
+          }
+         }
 
         APIFactory.getInformation().then(function (response){
             // $scope.typeArray = response.data.types;
@@ -99,8 +114,16 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
             for (var i = 0; i < response.data.states.length - 1; i++){
               $scope.stateArray.push(response.data.states[i].state);
             }
-
-
-
         });
+
+
+        $scope.updateStation = function(station){
+          station.active = 1;
+          station.delete = 0;
+          APIFactory.editStation(station).then(function (response){
+              console.log(response);
+          });
+        }
+
+      
 });
