@@ -15,12 +15,10 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         $scope.showPending = false;
         $scope.showDeleted = false;
 
+        $scope.addStation = false;
+
         $scope.orderBySearch = '';
         $scope.orderByTerm = true;
-
-        $scope.deleteStation = function ($index, station) {
-          $scope.activeStations.splice($index, 1);
-        };
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -42,6 +40,10 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
           $scope.showActive = false;
           $scope.showPending = false;
           $scope.showDeleted = true;
+        }
+
+        $scope.showAddStation = function(){
+          $scope.addStation = true;
         }
 
         $scope.sortMethod = function(name){
@@ -82,7 +84,6 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
         });
 
         $scope.editStation = function(id){
-          //KRISTEN... THIS IS WHAT YOU NEED TO DO WITH DELTEING THE STATIONS
           for(var i = 0; i < $scope.activeStations.length; i++){
             if($scope.activeStations[i].id == id){
               $scope.activeStations[i].edit = false;
@@ -119,7 +120,18 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
 
         }
 
-
+        $scope.deleteStation = function(id) {
+          for(var i = 0; i < $scope.activeStations.length; i++){
+            if($scope.activeStations[i].id == id){
+              var station = $scope.activeStations[i];
+              station.delete = 1;
+              station.active = 0;
+              APIFactory.editStation(station).then(function (response){
+                  console.log(response);
+              });
+            }
+          }
+        };
 
         //KRISTEN: LOOOK AT THIS:::::
         //active = 1 delete = 0 >>>>>> active station

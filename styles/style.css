@@ -57,6 +57,10 @@ th{
   color: #ffffff;
 }
 
+.addStation th{
+  background: #808080;
+}
+
 td{
   padding: 5px;
   border-bottom: 1px solid #000000;
@@ -107,6 +111,10 @@ input[type="search"]{
 
 .filters button{
   margin-left: 10px;
+}
+
+.filters button.add-station-btn{
+  margin-left: 30px;
 }
 
 .filters h3{

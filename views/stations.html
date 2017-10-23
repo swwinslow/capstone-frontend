@@ -19,7 +19,7 @@
           </div>
 
           <div class="col-6 status-container">
-            <h2>Search: <input type="search" ng-model="searchKeyword"></h2>
+            <h2>Search: <input type="search" ng-model="searchKeyword"><button class="add-station-btn" ng-click="showAddStation()">Add Station</button></h2>
           </div>
 
           <div class="filter-container">
@@ -50,9 +50,41 @@
     </div>
   </div>
 
+  <div class="container addStation" ng-show='addStation'>
+    <div class="row">
+      <div class="col-12">
+        <table>
+          <thead>
+            <th ng-click="sortMethod('frequency')">Frequency</th>
+            <th ng-click="sortMethod('long_name')">Name</th>
+            <th ng-click="sortMethod('short_name')">Abbreviation</th>
+            <th ng-click="sortMethod('city')">City</th>
+            <th ng-click="sortMethod('state')">State</th>
+            <th ng-click="sortMethod('slogan')">Slogan</th>
+            <th ng-click="sortMethod('type')">Type</th>
+            <th ng-click="sortMethod('genre')">Genre</th>
+            <th>Save</th>
+          </thead>
+
+          <tr>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:100px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:30px" required></td>
+            <td><input type="text" style="width:120px" required></td>
+            <td><input type="text" style="width:120px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><button ng-click=""> Active </button><button ng-click=""> Pending </button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="row">
-      <div class="col-12" >
+      <div class="col-12">
         <table>
           <thead>
             <th ng-click="sortMethod('frequency')">Frequency</th>
@@ -67,13 +99,13 @@
             <th>Delete</th>
           </thead>
 
-          <tr ng-repeat="station in activeStations | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
-            <td><input type="text" ng-model="station.frequency" style="width:80p ng-disabled="station.edit" required></td>
+          <tr ng-repeat="station in activeStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
+            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.short_name" style="width:60px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.city" style="width:80px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.state" style="width:30px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.slogan" ng-disabled="station.edit" required ng-init="edit=true"></td>
+            <td><input type="text" ng-model="station.slogan" style="width:120px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="station.edit" required ></td>
             <td>
