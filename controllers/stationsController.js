@@ -17,7 +17,7 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
 
         $scope.orderBySearch = '';
         $scope.orderByTerm = true;
-        
+
         $scope.deleteStation = function ($index, station) {
           $scope.activeStations.splice($index, 1);
         };
@@ -116,7 +116,9 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
+
         }
+
 
 
         //KRISTEN: LOOOK AT THIS:::::
