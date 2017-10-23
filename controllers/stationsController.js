@@ -17,9 +17,7 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
 
         $scope.orderBySearch = '';
         $scope.orderByTerm = true;
-
-
-
+        
         $scope.deleteStation = function ($index, station) {
           $scope.activeStations.splice($index, 1);
         };
@@ -93,11 +91,6 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
          }
 
         APIFactory.getInformation().then(function (response){
-            // $scope.typeArray = response.data.types;
-            // $scope.statesArray = response.data.genre;
-            // $scope.genreArray = response.data.states;
-
-            console.log(response.data.states);
 
             $scope.typeArray = [];
             $scope.stateArray = [];
@@ -125,5 +118,10 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
           });
         }
 
-      
+
+        //KRISTEN: LOOOK AT THIS:::::
+        //active = 1 delete = 0 >>>>>> active station
+        //active = 0 delete = 0 >>>>> pending station
+        //active = 1 or 0 delete = 1 >> delete station
+
 });

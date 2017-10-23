@@ -68,7 +68,7 @@
           </thead>
 
           <tr ng-repeat="station in activeStations | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
-            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.frequency" style="width:80p ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.short_name" style="width:60px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.city" style="width:80px" ng-disabled="station.edit" required></td>
