@@ -1,0 +1,124 @@
+
+<div ng-controller='activeStationsController' class="stations-page">
+  <h1 style="text-align:center"> Midwest Application Stations</h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-3 menu">
+        <div class="menu-item"><a href="#">Admin Panel</a></div>
+        <div class="menu-item active"><a href="http://localhost:8888/capstone-frontend/#/stations" class="stations">Stations</a></div>
+        <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
+      </div>
+      <div class="col-9 filters">
+        <form>
+          <div class="col-6">
+            <h2>Status:
+              <button><a href="#/">Active</a></button>
+              <button><a href="#/pending">Pending</a></button>
+              <button><a href="#/deleted">Deleted</a></button></h2>
+          </div>
+
+          <div class="col-6 status-container">
+            <h2>Search: <input type="search" ng-model="searchKeyword"><button class="add-station-btn" ng-click="showAddStation()">Add Station</button></h2>
+          </div>
+
+          <div class="filter-container">
+            <h2>Filter By:</h2>
+            <div class="col-4">
+              <h3 ng-click="myFuncGenre()">Genre<i ng-show="showicon5" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon6" class="fa fa-caret-right" aria-hidden="true"></i></h3>
+              <div ng-show="showGenre" ng-repeat="genre in genreArray" class="dropdown">
+                <input type="checkbox" ng-checked="true">{{genre}}<br/>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <h3 ng-click="myFuncOwnership()">Ownership<i ng-show="showicon3" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon4" class="fa fa-caret-right" aria-hidden="true"></i></h3>
+              <div ng-show="showOwnership" ng-repeat="owner in typeArray" class="dropdown">
+                <input type="checkbox" ng-checked="true"> {{owner}}<br/>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <h3 ng-click="myFuncGeographical()">Geographical<i ng-show="showicon2" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon1" class="fa fa-caret-right" aria-hidden="true"></i></h3>
+              <div ng-show="showGeo" ng-repeat="state in stateArray" class="dropdown">
+                <input type="checkbox" ng-checked="true"> {{state}}<br/>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container addStation" ng-show='addStation'>
+    <div class="row">
+      <div class="col-12">
+        <table>
+          <thead>
+            <th ng-click="sortMethod('frequency')">Frequency</th>
+            <th ng-click="sortMethod('long_name')">Name</th>
+            <th ng-click="sortMethod('short_name')">Abbreviation</th>
+            <th ng-click="sortMethod('city')">City</th>
+            <th ng-click="sortMethod('state')">State</th>
+            <th ng-click="sortMethod('slogan')">Slogan</th>
+            <th ng-click="sortMethod('type')">Type</th>
+            <th ng-click="sortMethod('genre')">Genre</th>
+            <th>Save</th>
+          </thead>
+
+          <tr>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:100px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><input type="text" style="width:30px" required></td>
+            <td><input type="text" style="width:120px" required></td>
+            <td><input type="text" style="width:120px" required></td>
+            <td><input type="text" style="width:80px" required></td>
+            <td><button ng-click=""> Active </button><button ng-click=""> Pending </button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <table>
+          <thead>
+            <th ng-click="sortMethod('frequency')">Frequency</th>
+            <th ng-click="sortMethod('long_name')">Name</th>
+            <th ng-click="sortMethod('short_name')">Abbreviation</th>
+            <th ng-click="sortMethod('city')">City</th>
+            <th ng-click="sortMethod('state')">State</th>
+            <th ng-click="sortMethod('slogan')">Slogan</th>
+            <th ng-click="sortMethod('type')">Type</th>
+            <th ng-click="sortMethod('genre')">Genre</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </thead>
+
+          <tr ng-repeat="station in activeStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
+            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.city" style="width:80px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.state" style="width:30px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.slogan" style="width:120px" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td>
+              <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
+              <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
+
+            </td>
+
+            <td class="delete-btn"><button ng-click="deleteStation(station.id)" > Delete </button></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

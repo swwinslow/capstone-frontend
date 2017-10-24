@@ -1,5 +1,4 @@
-
-<div ng-controller='stationsController' class="stations-page">
+<div ng-controller='pendingController' class="stations-page">
   <h1 style="text-align:center"> Midwest Application Stations</h1>
 
   <div class="container">
@@ -13,9 +12,9 @@
         <form>
           <div class="col-6">
             <h2>Status:
-              <button ng-click="showActiveFunc()">Active</button>
-              <button ng-click="showPendingFunc()">Pending</button>
-              <button ng-click="showDeletedFunc()">Deleted</button></h2>
+              <button><a href="#/">Active</a></button>
+              <button><a href="#/pending">Pending</a></button>
+              <button><a href="#/deleted">Deleted</a></button></h2>
           </div>
 
           <div class="col-6 status-container">
@@ -99,7 +98,7 @@
             <th>Delete</th>
           </thead>
 
-          <tr ng-repeat="station in activeStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
+          <tr ng-repeat="station in pendingStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
             <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="station.edit" required></td>

@@ -1,12 +1,16 @@
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider
   .when("/", {
-      templateUrl : "views/stations.html",
-      controller : "stationsController"
+      templateUrl : "views/activeStations.html",
+      controller : "activeStationsController"
   })
-  .when("/stations", {
-      templateUrl : "views/stations.html",
-      controller : "stationsController"
+  .when("/pending", {
+      templateUrl : "views/pendingStations.html",
+      controller : "pendingStationsController"
+  })
+  .when("/deleted", {
+      templateUrl : "views/deletedStations.html",
+      controller : "deletedStationsController"
   })
   .when("/popular", {
       templateUrl : "views/popular.html",

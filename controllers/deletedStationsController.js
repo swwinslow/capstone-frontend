@@ -1,4 +1,4 @@
-app.controller('stationsController', function($scope, $timeout,  APIFactory, $rootScope) {
+app.controller('deletedStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
 
         $scope.showGeo = false;
         $scope.showGenre = false;
@@ -24,30 +24,11 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
           $scope.showMe = !$scope.showMe;
         }
 
-        $scope.showActiveFunc = function(){
-          $scope.showActive = true;
-          $scope.showPending = false;
-          $scope.showDeleted = false;
-        }
-
-        $scope.showPendingFunc = function(){
-          $scope.showActive = false;
-          $scope.showPending = true;
-          $scope.showDeleted = false;
-        }
-
-        $scope.showDeletedFunc = function(){
-          $scope.showActive = false;
-          $scope.showPending = false;
-          $scope.showDeleted = true;
-        }
-
         $scope.showAddStation = function(){
           $scope.addStation = true;
         }
 
         $scope.sortMethod = function(name){
-          console.log('lol');
           if($scope.orderBySearch == name){
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
@@ -77,22 +58,17 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
             $scope.activeStations = response.data.active;
             $scope.pendingStations = response.data.pending;
             $scope.deletedStations = response.data.deleted;
-
-            for(var i = 0; i < $scope.activeStations.length; i++){
-                $scope.activeStations[i].edit = true;
-            }
         });
 
         $scope.editStation = function(id){
-          for(var i = 0; i < $scope.activeStations.length; i++){
-            if($scope.activeStations[i].id == id){
-              $scope.activeStations[i].edit = false;
+          for(var i = 0; i < $scope.deletedStations.length; i++){
+            if($scope.deletedStations[i].id == id){
+              $scope.deletedStations[i].edit = false;
             }
           }
          }
 
         APIFactory.getInformation().then(function (response){
-
             $scope.typeArray = [];
             $scope.stateArray = [];
             $scope.genreArray = [];
@@ -120,18 +96,19 @@ app.controller('stationsController', function($scope, $timeout,  APIFactory, $ro
 
         }
 
-        $scope.deleteStation = function(id) {
-          for(var i = 0; i < $scope.activeStations.length; i++){
-            if($scope.activeStations[i].id == id){
-              var station = $scope.activeStations[i];
-              station.delete = 1;
-              station.active = 0;
+
+        $scope.activeStation = function(id){
+          for(var i = 0; i < $scope.deletedStations.length; i++){
+            if($scope.deletedStations[i].id == id){
+              var station = $scope.deletedStations[i];
+              station.delete = 0;
+              station.active = 1;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
             }
           }
-        };
+        }
 
         //KRISTEN: LOOOK AT THIS:::::
         //active = 1 delete = 0 >>>>>> active station
