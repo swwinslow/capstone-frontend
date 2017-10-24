@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-3 menu">
         <div class="menu-item"><a href="#">Admin Panel</a></div>
-        <div class="menu-item active"><a href="http://localhost:8888/capstone-frontend/#/stations" class="stations">Stations</a></div>
+        <div class="menu-item active"><a href="http://localhost:8888/capstone-frontend/#/" class="stations">Stations</a></div>
         <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
       </div>
       <div class="col-9 filters">
@@ -55,8 +55,8 @@
       <div class="col-12">
         <table>
           <thead>
-            <th ng-click="sortMethod('frequency')">Frequency</th>
-            <th ng-click="sortMethod('long_name')">Name</th>
+            <th>Frequency</th>
+            <th>Name</th>
             <th ng-click="sortMethod('short_name')">Abbreviation</th>
             <th ng-click="sortMethod('city')">City</th>
             <th ng-click="sortMethod('state')">State</th>
@@ -67,15 +67,15 @@
           </thead>
 
           <tr>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:100px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:30px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><button ng-click=""> Active </button><button ng-click=""> Pending </button></td>
+            <td><input ng-model="createNewStation.frequency" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.long_name" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.short_name" type="text" style="width:100px" required></td>
+            <td><input ng-model="createNewStation.city" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.state" type="text" style="width:30px" required></td>
+            <td><input ng-model="createNewStation.slogan" type="text" style="width:120px" required></td>
+            <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
+            <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
+            <td><button ng-click="activeStation(createNewStation)"> Active </button><button ng-click=""> Pending </button></td>
           </tr>
         </table>
       </div>

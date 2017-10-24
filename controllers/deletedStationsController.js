@@ -63,7 +63,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
         $scope.editStation = function(id){
           for(var i = 0; i < $scope.deletedStations.length; i++){
             if($scope.deletedStations[i].id == id){
-              $scope.deletedStations[i].edit = false;
+              $scope.deletedStations[i].edit = true;
             }
           }
          }
@@ -86,16 +86,19 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
             }
         });
 
-
         $scope.updateStation = function(station){
-          station.active = 1;
-          station.delete = 0;
+          station.active = 0;
+          station.delete = 1;
+          for(var i = 0; i < $scope.deletedStations.length; i++){
+            if($scope.deletedStations[i].id == station.id){
+              $scope.deletedStations[i].edit = false;
+            }
+          }
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
 
         }
-
 
         $scope.activeStation = function(id){
           for(var i = 0; i < $scope.deletedStations.length; i++){

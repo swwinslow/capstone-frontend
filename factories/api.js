@@ -65,5 +65,28 @@ app.factory('APIFactory', function($http){
         });
     }
 
+    data.createStation = function (station) {
+
+          return $http({
+              method: "POST",
+              url: baseURL + '/AddStation.php',
+              data: serializeData ({
+                  "short_name"    : station.short_name,
+                  "long_name"     : station.long_name,
+                  "frequency"     : station.frequency,
+                  "city"          : station.city,
+                  "state"         : station.state,
+                  "slogan"        : station.slogan,
+                  "type"          : station.type,
+                  "genre"         : station.genre,
+                  "active"        : station.active,
+                  "delete"        : station.delete
+              }),
+              headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+              }
+          });
+      }
+
   return data;
 });

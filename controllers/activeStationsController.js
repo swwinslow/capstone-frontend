@@ -114,6 +114,11 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.updateStation = function(station){
           station.active = 1;
           station.delete = 0;
+          for(var i = 0; i < $scope.activeStations.length; i++){
+            if($scope.activeStations[i].id == station.id){
+              $scope.activeStations[i].edit = true;
+            }
+          }
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
@@ -132,6 +137,15 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
           }
         };
+
+        $scope.activeStation = function(station){
+          console.log("LOL");
+          station.delete = 0;
+          station.active = 1;
+          APIFactory.createStation(station).then(function (response){
+              console.log(response);
+          });
+        }
 
         //KRISTEN: LOOOK AT THIS:::::
         //active = 1 delete = 0 >>>>>> active station
