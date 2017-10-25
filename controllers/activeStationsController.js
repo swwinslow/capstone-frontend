@@ -11,6 +11,92 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.showicon5 = false;
         $scope.showicon6 = true;
 
+        $scope.selectedGenres = [];
+        $scope.selectedOwnership = [];
+        $scope.selectedGeo = [];
+
+
+
+        $scope.addGenre = function (genre){
+          var found = false;
+          for(var i = 0; i < $scope.selectedGenres.length; i++){
+            console.log(genre);
+            console.log($scope.selectedGenres[i]);
+            if(genre === $scope.selectedGenres[i]){
+              $scope.selectedGenres.splice(i, 1);
+              found = true;
+            }
+          }
+          if(found == false){
+            $scope.selectedGenres.push(genre);
+          }
+          $scope.updateStationsNOW();
+        };
+
+        $scope.addGeo = function (ownership){
+          var found = false;
+          for(var i = 0; i < $scope.selectedGeo.length; i++){
+            console.log($scope.selectedGeo[i]);
+            if(ownership === $scope.selectedGeo[i]){
+              $scope.selectedGeo.splice(i, 1);
+              found = true;
+            }
+          }
+          if(found == false){
+            $scope.selectedGeo.push(genre);
+          }
+          $scope.updateStationsNOW();
+        };
+
+
+        $scope.addOwnership = function (ownership){
+          var found = false;
+          for(var i = 0; i < $scope.selectedOwnership.length; i++){
+            console.log($scope.selectedOwnership[i]);
+            if(ownership === $scope.selectedOwnership[i]){
+              $scope.selectedOwnership.splice(i, 1);
+              found = true;
+            }
+          }
+          if(found == false){
+            $scope.selectedOwnership.push(genre);
+          }
+          $scope.updateStationsNOW();
+        };
+
+        $scope.updateStationsNOW= function(genre){
+          $scope.tempArray = [];
+          for(var i = 0; i < $scope.allActiveStations.length; i++){
+            for(var j = 0; j < $scope.selectedGenres.length; j++){
+              if($scope.allActiveStations[i].genre == $scope.selectedGenres[j]){
+                $scope.tempArray.push($scope.allActiveStations[i]);
+              }
+            }
+          }
+
+          for(var i = 0; i < $scope.allActiveStations.length; i++){
+            for(var j = 0; j < $scope.selectedOwnership.length; j++){
+              if($scope.allActiveStations[i].type == $scope.selectedOwnership[j]){
+                $scope.tempArray.push($scope.allActiveStations[i]);
+              }
+            }
+          }
+
+          for(var i = 0; i < $scope.allActiveStations.length; i++){
+            for(var j = 0; j < $scope.selectedGeo.length; j++){
+              if($scope.allActiveStations[i].state == $scope.selectedGeo[j]){
+                $scope.tempArray.push($scope.allActiveStations[i]);
+              }
+            }
+          }
+
+          $scope.activeStations = $scope.tempArray;
+        }
+
+
+
+
+
         $scope.showActive = true;
         $scope.showPending = false;
         $scope.showDeleted = false;
@@ -74,9 +160,8 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         }
 
         APIFactory.getAllStations().then(function (response){
+            $scope.allActiveStations = response.data.active;
             $scope.activeStations = response.data.active;
-            $scope.pendingStations = response.data.pending;
-            $scope.deletedStations = response.data.deleted;
 
             for(var i = 0; i < $scope.activeStations.length; i++){
                 $scope.activeStations[i].edit = true;
@@ -104,6 +189,12 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             for (var i = 0; i < response.data.genre.length - 1; i++){
               $scope.genreArray.push(response.data.genre[i].genre);
             }
+
+            for(var i = 0; i < $scope.genreArray.length; i++){
+              $scope.genreArray[i].isClicked = true;
+            }
+
+
 
             for (var i = 0; i < response.data.states.length - 1; i++){
               $scope.stateArray.push(response.data.states[i].state);
