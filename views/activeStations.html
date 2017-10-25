@@ -35,14 +35,14 @@
             <div class="col-4">
               <h3 ng-click="myFuncOwnership()">Ownership<i ng-show="showicon3" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon4" class="fa fa-caret-right" aria-hidden="true"></i></h3>
               <div ng-show="showOwnership" ng-repeat="owner in typeArray" class="dropdown">
-                <input type="checkbox" ng-checked="true"> {{owner}}<br/>
+                <input type="checkbox" ng-checked="owner.isClicked" ng-change="addOwnership(owner)" ng-model="myValue"> {{owner}}<br/>
               </div>
             </div>
 
             <div class="col-4">
               <h3 ng-click="myFuncGeographical()">Geographical<i ng-show="showicon2" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon1" class="fa fa-caret-right" aria-hidden="true"></i></h3>
               <div ng-show="showGeo" ng-repeat="state in stateArray" class="dropdown">
-                <input type="checkbox" ng-checked="true"> {{state}}<br/>
+                <input type="checkbox" ng-checked="state.isClicked" ng-change="addGeo(state)" ng-model="myValue"> {{state}}<br/>
               </div>
             </div>
           </div>

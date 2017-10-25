@@ -33,7 +33,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           $scope.updateStationsNOW();
         };
 
-        $scope.addGeo = function (ownership){
+        $scope.addGeo = function (geo){
           var found = false;
           for(var i = 0; i < $scope.selectedGeo.length; i++){
             console.log($scope.selectedGeo[i]);
@@ -43,7 +43,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
           }
           if(found == false){
-            $scope.selectedGeo.push(genre);
+            $scope.selectedGeo.push(geo);
           }
           $scope.updateStationsNOW();
         };
@@ -59,12 +59,12 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
           }
           if(found == false){
-            $scope.selectedOwnership.push(genre);
+            $scope.selectedOwnership.push(ownership);
           }
           $scope.updateStationsNOW();
         };
 
-        $scope.updateStationsNOW= function(genre){
+        $scope.updateStationsNOW= function(){
           $scope.tempArray = [];
           for(var i = 0; i < $scope.allActiveStations.length; i++){
             for(var j = 0; j < $scope.selectedGenres.length; j++){
@@ -186,6 +186,10 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.typeArray.push(response.data.types[i].type);
             }
 
+            for(var i = 0; i < $scope.typeArray.length; i++){
+              $scope.typeArray[i].isClicked = true;
+            }
+
             for (var i = 0; i < response.data.genre.length - 1; i++){
               $scope.genreArray.push(response.data.genre[i].genre);
             }
@@ -198,6 +202,10 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
             for (var i = 0; i < response.data.states.length - 1; i++){
               $scope.stateArray.push(response.data.states[i].state);
+            }
+
+            for(var i = 0; i < $scope.stateArray.length; i++){
+              $scope.stateArray[i].isClicked = true;
             }
         });
 
