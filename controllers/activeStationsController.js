@@ -133,11 +133,11 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         }
 
         $scope.sortMethod = function(name){
-          console.log('lol');
           if($scope.orderBySearch == name){
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
             $scope.orderBySearch = name;
+            $scope.orderByTerm = true;
           }
         }
 
