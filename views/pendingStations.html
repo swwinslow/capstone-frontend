@@ -66,15 +66,15 @@
           </thead>
 
           <tr>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:100px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:30px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><button ng-click=""> Active </button><button ng-click=""> Pending </button></td>
+            <td><input ng-model="createNewStation.frequency" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.long_name" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.short_name" type="text" style="width:100px" required></td>
+            <td><input ng-model="createNewStation.city" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.state" type="text" style="width:30px" required></td>
+            <td><input ng-model="createNewStation.slogan" type="text" style="width:120px" required></td>
+            <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
+            <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
+            <td><button ng-click="createPendingStation(createNewStation)"> Pending </button></td>
           </tr>
         </table>
       </div>
@@ -95,6 +95,7 @@
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
             <th>Edit</th>
+            <th>Make Active</th>
             <th>Delete</th>
           </thead>
 
@@ -110,9 +111,8 @@
             <td>
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
-
             </td>
-
+            <td><button ng-click="activateStation(station.id)" >Activate</button></td>
             <td class="delete-btn"><button ng-click="deleteStation(station.id)" > Delete </button></td>
           </tr>
         </table>

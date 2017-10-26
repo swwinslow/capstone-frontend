@@ -18,7 +18,7 @@
           </div>
 
           <div class="col-6 status-container">
-            <h2>Search: <input type="search" ng-model="searchKeyword"><button class="add-station-btn" ng-click="showAddStation()">Add Station</button></h2>
+            <h2>Search: <input type="search" ng-model="searchKeyword"></h2>
           </div>
 
           <div class="filter-container">
@@ -49,38 +49,6 @@
     </div>
   </div>
 
-  <div class="container addStation" ng-show='addStation'>
-    <div class="row">
-      <div class="col-12">
-        <table>
-          <thead>
-            <th ng-click="sortMethod('frequency')">Frequency</th>
-            <th ng-click="sortMethod('long_name')">Name</th>
-            <th ng-click="sortMethod('short_name')">Abbreviation</th>
-            <th ng-click="sortMethod('city')">City</th>
-            <th ng-click="sortMethod('state')">State</th>
-            <th ng-click="sortMethod('slogan')">Slogan</th>
-            <th ng-click="sortMethod('type')">Type</th>
-            <th ng-click="sortMethod('genre')">Genre</th>
-            <th>Save</th>
-          </thead>
-
-          <tr>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:100px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><input type="text" style="width:30px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:120px" required></td>
-            <td><input type="text" style="width:80px" required></td>
-            <td><button ng-click=""> Active </button><button ng-click=""> Pending </button></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -95,7 +63,7 @@
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
             <th>Edit</th>
-            <th>Activate</th>
+            <th>Move</th>
           </thead>
 
           <tr ng-repeat="station in deletedStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
@@ -112,7 +80,7 @@
               <button ng-click="updateStation(station)" ng-hide="!station.edit"> Save </button>
             </td>
 
-            <td class="delete-btn"><button ng-click="activeStation(station.id)" > Activate Station </button></td>
+            <td><button ng-click="activateStation(station.id)" > Activate </button><button ng-click="pendStation(station.id)" > Pending </button></td>
           </tr>
         </table>
       </div>

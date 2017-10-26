@@ -18,7 +18,7 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
         $scope.addStation = false;
 
         $scope.orderBySearch = '';
-        $scope.orderByTerm = true;
+        $scope.orderByTerm = false;
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -34,6 +34,7 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
             $scope.orderBySearch = name;
+            $scope.orderByTerm = false;
           }
         }
 
@@ -94,18 +95,22 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
 
 
         $scope.updateStation = function(station){
-          station.active = 1;
+          station.active = 0;
           station.delete = 0;
+          for(var i = 0; i < $scope.pendingStations.length; i++){
+            if($scope.pendingStations[i].id == station.id){
+              $scope.pendingStations[i].edit = true;
+            }
+          }
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
-
         }
 
         $scope.deleteStation = function(id) {
-          for(var i = 0; i < $scope.activeStations.length; i++){
-            if($scope.activeStations[i].id == id){
-              var station = $scope.activeStations[i];
+          for(var i = 0; i < $scope.pendingStations.length; i++){
+            if($scope.pendingStations[i].id == id){
+              var station = $scope.pendingStations[i];
               station.delete = 1;
               station.active = 0;
               APIFactory.editStation(station).then(function (response){
@@ -115,13 +120,18 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
           }
         };
 
-        $scope.createActiveStation = function(station){
-          station.delete = 0;
-          station.active = 1;
-          APIFactory.createStation(station).then(function (response){
-              console.log(response);
-          });
-        }
+        $scope.activateStation = function(id) {
+          for(var i = 0; i < $scope.pendingStations.length; i++){
+            if($scope.pendingStations[i].id == id){
+              var station = $scope.pendingStations[i];
+              station.delete = 0;
+              station.active = 1;
+              APIFactory.editStation(station).then(function (response){
+                  console.log(response);
+              });
+            }
+          }
+        };
 
         $scope.createPendingStation = function(station){
           console.log('lol');

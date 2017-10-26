@@ -18,7 +18,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
         $scope.addStation = false;
 
         $scope.orderBySearch = '';
-        $scope.orderByTerm = true;
+        $scope.orderByTerm = false;
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -33,6 +33,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
             $scope.orderBySearch = name;
+            $scope.orderByTerm = false;
           }
         }
 
@@ -100,7 +101,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
 
         }
 
-        $scope.activeStation = function(id){
+        $scope.activateStation = function(id){
           for(var i = 0; i < $scope.deletedStations.length; i++){
             if($scope.deletedStations[i].id == id){
               var station = $scope.deletedStations[i];
@@ -113,9 +114,17 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
           }
         }
 
-        //KRISTEN: LOOOK AT THIS:::::
-        //active = 1 delete = 0 >>>>>> active station
-        //active = 0 delete = 0 >>>>> pending station
-        //active = 1 or 0 delete = 1 >> delete station
+        $scope.pendStation = function(id){
+          for(var i = 0; i < $scope.deletedStations.length; i++){
+            if($scope.deletedStations[i].id == id){
+              var station = $scope.deletedStations[i];
+              station.delete = 0;
+              station.active = 0;
+              APIFactory.editStation(station).then(function (response){
+                  console.log(response);
+              });
+            }
+          }
+        }
 
 });

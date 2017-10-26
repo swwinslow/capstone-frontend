@@ -76,8 +76,7 @@
             <td><input ng-model="createNewStation.slogan" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
-            <td><button ng-click="createActiveStation(createNewStation)"> Active </button>
-              <button ng-click="createPendingStation(createNewStation)"> Pending </button></td>
+            <td><button ng-click="createActiveStation(createNewStation)"> Activate </button></td>
           </tr>
         </table>
       </div>
@@ -98,6 +97,7 @@
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
             <th>Edit</th>
+            <th>Make Pending</th>
             <th>Delete</th>
           </thead>
 
@@ -113,9 +113,8 @@
             <td>
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
-
             </td>
-
+            <td><button ng-click="pendStation(station.id)" > Pending </button></td>
             <td class="delete-btn"><button ng-click="deleteStation(station.id)" > Delete </button></td>
           </tr>
         </table>

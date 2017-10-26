@@ -15,8 +15,6 @@ app.filter('genre', function() {
         scope.dataX = filtered;
         return filtered;
     } else {
-
-
       return scope.dataX;
     }
 

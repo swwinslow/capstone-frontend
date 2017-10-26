@@ -14,19 +14,12 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.selectedGenres = [];
         $scope.selectedOwnership = [];
         $scope.selectedGeo = [];
-
         $scope.selectedGenreData = [];
-
         $scope.selectedTypeData = [];
-
         $scope.selectedStateData = [];
-
-
-
 
         $scope.addGenre = function (genre){
           var found = false;
-
           for(var i = 0; i < $scope.selectedGenreData.length; i++){
             if(genre === $scope.selectedGenreData[i]){
               $scope.selectedGenreData.splice(i, 1);
@@ -52,7 +45,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           }
         };
 
-
         $scope.addOwnership = function (ownership){
           var found = false;
           for(var i = 0; i < $scope.selectedTypeData.length; i++){
@@ -74,7 +66,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.addStation = false;
 
         $scope.orderBySearch = '';
-        $scope.orderByTerm = true;
+        $scope.orderByTerm = false;
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -107,7 +99,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
             $scope.orderBySearch = name;
-            $scope.orderByTerm = true;
+            $scope.orderByTerm = false;
           }
         }
 
@@ -130,15 +122,15 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         }
 
         APIFactory.getAllStations().then(function (response){
-            $scope.allActiveStations = response.data.active;
-            $scope.activeStations = response.data.active;
+          $scope.allActiveStations = response.data.active;
+          $scope.activeStations = response.data.active;
 
-            for(var i = 0; i < $scope.activeStations.length; i++){
-                $scope.activeStations[i].edit = true;
-            }
+          for(var i = 0; i < $scope.activeStations.length; i++){
+              $scope.activeStations[i].edit = true;
+          }
         });
 
-          $scope.editMode = false;
+        $scope.editMode = false;
 
         $scope.editStation = function(id){
           for(var i = 0; i < $scope.activeStations.length; i++){
@@ -147,52 +139,43 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.editMode = true;
             }
           }
-         }
+        }
 
-         $scope.dataX = "HELLO";
+        $scope.dataX = "HELLO";
 
         APIFactory.getInformation().then(function (response){
+          $scope.typeArray = [];
+          $scope.stateArray = [];
+          $scope.genreArray = [];
+          console.log(response);
 
-            $scope.typeArray = [];
-            $scope.stateArray = [];
-            $scope.genreArray = [];
-            console.log(response);
+          for (var i = 0; i < response.data.types.length; i++){
+              $scope.typeArray.push(response.data.types[i].type);
+              $scope.selectedTypeData.push(response.data.types[i].type);
+          }
 
-            for (var i = 0; i < response.data.types.length; i++){
-                $scope.typeArray.push(response.data.types[i].type);
-                $scope.selectedTypeData.push(response.data.types[i].type);
+          for(var i = 0; i < $scope.typeArray.length; i++){
+            $scope.typeArray[i].isClicked = true;
+          }
 
-            }
+          for (var i = 0; i < response.data.genre.length; i++){
+            $scope.genreArray.push(response.data.genre[i].genre);
+            $scope.selectedGenreData.push(response.data.genre[i].genre);
+          }
 
-            for(var i = 0; i < $scope.typeArray.length; i++){
-              $scope.typeArray[i].isClicked = true;
-            }
+          for(var i = 0; i < $scope.genreArray.length; i++){
+            $scope.genreArray[i].isClicked = true;
+          }
 
-            for (var i = 0; i < response.data.genre.length; i++){
+          for (var i = 0; i < response.data.states.length; i++){
+            $scope.stateArray.push(response.data.states[i].state);
+            $scope.selectedStateData.push(response.data.states[i].state);
+          }
 
-                $scope.genreArray.push(response.data.genre[i].genre);
-                $scope.selectedGenreData.push(response.data.genre[i].genre);
-
-            }
-
-            for(var i = 0; i < $scope.genreArray.length; i++){
-              $scope.genreArray[i].isClicked = true;
-            }
-
-
-
-            for (var i = 0; i < response.data.states.length; i++){
-
-                $scope.stateArray.push(response.data.states[i].state);
-                $scope.selectedStateData.push(response.data.states[i].state);
-
-            }
-
-            for(var i = 0; i < $scope.stateArray.length; i++){
-              $scope.stateArray[i].isClicked = true;
-            }
+          for(var i = 0; i < $scope.stateArray.length; i++){
+            $scope.stateArray[i].isClicked = true;
+          }
         });
-
 
         $scope.updateStation = function(station){
           station.active = 1;
@@ -205,7 +188,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
-
         }
 
         $scope.deleteStation = function(id) {
@@ -221,6 +203,19 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           }
         };
 
+        $scope.pendStation = function(id){
+          for(var i = 0; i < $scope.activeStations.length; i++){
+            if($scope.activeStations[i].id == id){
+              var station = $scope.activeStations[i];
+              station.delete = 0;
+              station.active = 0;
+              APIFactory.editStation(station).then(function (response){
+                  console.log(response);
+              });
+            }
+          }
+        }
+
         $scope.createActiveStation = function(station){
           station.delete = 0;
           station.active = 1;
@@ -228,19 +223,5 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               console.log(response);
           });
         }
-
-        $scope.createPendingStation = function(station){
-          console.log('lol');
-          station.delete = 0;
-          station.active = 0;
-          APIFactory.createStation(station).then(function (response){
-              console.log(response);
-          });
-        }
-
-        //KRISTEN: LOOOK AT THIS:::::
-        //active = 1 delete = 0 >>>>>> active station
-        //active = 0 delete = 0 >>>>> pending station
-        //active = 1 or 0 delete = 1 >> delete station
 
 });

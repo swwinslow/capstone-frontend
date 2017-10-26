@@ -1,14 +1,14 @@
 app.controller('popularController', function($scope, APIFactory) {
 
   $scope.orderBySearch = '';
-  $scope.orderByTerm = true;
+  $scope.orderByTerm = false;
 
   $scope.sortMethod = function(name){
     if($scope.orderBySearch == name){
       $scope.orderByTerm = !$scope.orderByTerm;
     } else {
       $scope.orderBySearch = name;
-      $scope.orderByTerm = true;
+      $scope.orderByTerm = false;
     }
   }
 
