@@ -15,91 +15,56 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.selectedOwnership = [];
         $scope.selectedGeo = [];
 
-        $scope.selectedDataGenre = ["Country", "Public"];
+        $scope.selectedGenreData = [];
 
-        $scope.selectedTypeData = ["Public Funded", "Public Information"];
+        $scope.selectedTypeData = [];
 
-        $scope.selectedStateData = ["OH"];
+        $scope.selectedStateData = [];
+
+
 
         $scope.addGenre = function (genre){
           var found = false;
-          for(var i = 0; i < $scope.selectedGenres.length; i++){
-            console.log(genre);
-            console.log($scope.selectedGenres[i]);
-            if(genre === $scope.selectedGenres[i]){
-              $scope.selectedGenres.splice(i, 1);
+
+          for(var i = 0; i < $scope.selectedGenreData.length; i++){
+            if(genre === $scope.selectedGenreData[i]){
+              $scope.selectedGenreData.splice(i, 1);
               found = true;
             }
           }
           if(found == false){
-            $scope.selectedGenres.push(genre);
+            $scope.selectedGenreData.push(genre);
           }
-          $scope.updateStationsNOW();
+          console.log($scope.selectedGenreData);
         };
 
         $scope.addGeo = function (geo){
           var found = false;
-          for(var i = 0; i < $scope.selectedGeo.length; i++){
-            console.log($scope.selectedGeo[i]);
-            if(ownership === $scope.selectedGeo[i]){
-              $scope.selectedGeo.splice(i, 1);
+          for(var i = 0; i < $scope.selectedStateData.length; i++){
+            if(geo === $scope.selectedStateData[i]){
+              $scope.selectedStateData.splice(i, 1);
               found = true;
             }
           }
           if(found == false){
-            $scope.selectedGeo.push(geo);
+            $scope.selectedStateData.push(geo);
           }
-          $scope.updateStationsNOW();
         };
 
 
         $scope.addOwnership = function (ownership){
           var found = false;
-          for(var i = 0; i < $scope.selectedOwnership.length; i++){
-            console.log($scope.selectedOwnership[i]);
-            if(ownership === $scope.selectedOwnership[i]){
-              $scope.selectedOwnership.splice(i, 1);
+          for(var i = 0; i < $scope.selectedTypeData.length; i++){
+            console.log($scope.selectedTypeData[i]);
+            if(ownership === $scope.selectedTypeData[i]){
+              $scope.selectedTypeData.splice(i, 1);
               found = true;
             }
           }
           if(found == false){
-            $scope.selectedOwnership.push(ownership);
+            $scope.selectedTypeData.push(ownership);
           }
-          $scope.updateStationsNOW();
         };
-
-        $scope.updateStationsNOW= function(){
-          $scope.tempArray = [];
-          for(var i = 0; i < $scope.allActiveStations.length; i++){
-            for(var j = 0; j < $scope.selectedGenres.length; j++){
-              if($scope.allActiveStations[i].genre == $scope.selectedGenres[j]){
-                $scope.tempArray.push($scope.allActiveStations[i]);
-              }
-            }
-          }
-
-          for(var i = 0; i < $scope.allActiveStations.length; i++){
-            for(var j = 0; j < $scope.selectedOwnership.length; j++){
-              if($scope.allActiveStations[i].type == $scope.selectedOwnership[j]){
-                $scope.tempArray.push($scope.allActiveStations[i]);
-              }
-            }
-          }
-
-          for(var i = 0; i < $scope.allActiveStations.length; i++){
-            for(var j = 0; j < $scope.selectedGeo.length; j++){
-              if($scope.allActiveStations[i].state == $scope.selectedGeo[j]){
-                $scope.tempArray.push($scope.allActiveStations[i]);
-              }
-            }
-          }
-
-          $scope.activeStations = $scope.tempArray;
-        }
-
-
-
-
 
         $scope.showActive = true;
         $scope.showPending = false;
@@ -185,17 +150,23 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.typeArray = [];
             $scope.stateArray = [];
             $scope.genreArray = [];
+            console.log(response);
 
-            for (var i = 0; i < response.data.types.length - 1; i++){
-              $scope.typeArray.push(response.data.types[i].type);
+            for (var i = 0; i < response.data.types.length; i++){
+                $scope.typeArray.push(response.data.types[i].type);
+                $scope.selectedTypeData.push(response.data.types[i].type);
+
             }
 
             for(var i = 0; i < $scope.typeArray.length; i++){
               $scope.typeArray[i].isClicked = true;
             }
 
-            for (var i = 0; i < response.data.genre.length - 1; i++){
-              $scope.genreArray.push(response.data.genre[i].genre);
+            for (var i = 0; i < response.data.genre.length; i++){
+
+                $scope.genreArray.push(response.data.genre[i].genre);
+                $scope.selectedGenreData.push(response.data.genre[i].genre);
+
             }
 
             for(var i = 0; i < $scope.genreArray.length; i++){
@@ -204,8 +175,11 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
 
 
-            for (var i = 0; i < response.data.states.length - 1; i++){
-              $scope.stateArray.push(response.data.states[i].state);
+            for (var i = 0; i < response.data.states.length; i++){
+
+                $scope.stateArray.push(response.data.states[i].state);
+                $scope.selectedStateData.push(response.data.states[i].state);
+
             }
 
             for(var i = 0; i < $scope.stateArray.length; i++){
