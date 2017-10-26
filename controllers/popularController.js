@@ -8,6 +8,7 @@ app.controller('popularController', function($scope, APIFactory) {
       $scope.orderByTerm = !$scope.orderByTerm;
     } else {
       $scope.orderBySearch = name;
+      $scope.orderByTerm = true;
     }
   }
 
