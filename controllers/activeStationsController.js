@@ -15,7 +15,11 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.selectedOwnership = [];
         $scope.selectedGeo = [];
 
+        $scope.selectedDataGenre = ["Country", "Public"];
 
+        $scope.selectedTypeData = ["Public Funded", "Public Information"];
+
+        $scope.selectedStateData = ["OH"];
 
         $scope.addGenre = function (genre){
           var found = false;

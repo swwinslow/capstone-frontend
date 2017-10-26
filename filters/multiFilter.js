@@ -1,41 +1,45 @@
-app.filter('filterMultiple',['$filter',function ($filter) {
-	return function (items, keyObj) {
-		var filterObj = {
-							data:items,
-							filteredData:[],
-							applyFilter : function(obj,key){
-								var fData = [];
-								if(this.filteredData.length == 0)
-									this.filteredData = this.data;
-								if(obj){
-									var fObj = {};
-									if(!angular.isArray(obj)){
-										fObj[key] = obj;
-										fData = fData.concat($filter('filter')(this.filteredData,fObj));
-									}else if(angular.isArray(obj)){
-										if(obj.length > 0){
-											for(var i=0;i<obj.length;i++){
-												if(angular.isDefined(obj[i])){
-													fObj[key] = obj[i];
-													fData = fData.concat($filter('filter')(this.filteredData,fObj));
-												}
-											}
+app.filter('genre', function() {
+  return function(items, filterWords) {
+    var filtered = [];
+    angular.forEach(items, function(items) {
+      for(var i = 0; i < filterWords.length; i++){
+        if(items.genre && items.genre.indexOf(filterWords[i])>-1) {
+          filtered.push(items);
+          break;
+        }
+      }
+    });
+    return filtered;
+  }
+});
 
-										}
-									}
-									if(fData.length > 0){
-										this.filteredData = fData;
-									}
-								}
-							}
-				};
 
-		if(keyObj){
-			angular.forEach(keyObj,function(obj,key){
-				filterObj.applyFilter(obj,key);
-			});
-		}
+app.filter('type', function() {
+  return function(items, filterWords) {
+    var filtered = [];
+    angular.forEach(items, function(items) {
+      for(var i = 0; i < filterWords.length; i++){
+        if(items.type && items.type.indexOf(filterWords[i])>-1) {
+          filtered.push(items);
+          break;
+        }
+      }
+    });
+    return filtered;
+  }
+});
 
-		return filterObj.filteredData;
-	}
-}]);
+app.filter('state', function() {
+  return function(items, filterWords) {
+    var filtered = [];
+    angular.forEach(items, function(items) {
+      for(var i = 0; i < filterWords.length; i++){
+        if(items.state && items.state.indexOf(filterWords[i])>-1) {
+          filtered.push(items);
+          break;
+        }
+      }
+    });
+    return filtered;
+  }
+});

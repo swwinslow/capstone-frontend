@@ -100,7 +100,7 @@
             <th>Delete</th>
           </thead>
 
-          <tr ng-repeat="station in activeStations | filter: searchKeyword | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
+          <tr ng-repeat="station in activeStations | genre:selectedDataGenre | type:selectedTypeData | state:selectedStateData | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
             <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="station.edit" required></td>
