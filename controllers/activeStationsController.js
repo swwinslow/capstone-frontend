@@ -23,6 +23,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
 
 
+
         $scope.addGenre = function (genre){
           var found = false;
 
@@ -137,13 +138,18 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
         });
 
+          $scope.editMode = false;
+
         $scope.editStation = function(id){
           for(var i = 0; i < $scope.activeStations.length; i++){
             if($scope.activeStations[i].id == id){
               $scope.activeStations[i].edit = false;
+              $scope.editMode = true;
             }
           }
          }
+
+         $scope.dataX = "HELLO";
 
         APIFactory.getInformation().then(function (response){
 

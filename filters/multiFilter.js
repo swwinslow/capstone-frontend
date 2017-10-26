@@ -1,15 +1,25 @@
 app.filter('genre', function() {
-  return function(items, filterWords) {
-    var filtered = [];
-    angular.forEach(items, function(items) {
-      for(var i = 0; i < filterWords.length; i++){
-        if(items.genre && items.genre.indexOf(filterWords[i])>-1) {
-          filtered.push(items);
-          break;
-        }
-      }
-    });
-    return filtered;
+  // if ($scope.editMode == true){
+    return function(items, filterWords, editMode, scope) {
+      if(!editMode){
+        var filtered = [];
+        angular.forEach(items, function(items) {
+          for(var i = 0; i < filterWords.length; i++){
+            if(items.genre && items.genre.indexOf(filterWords[i])>-1) {
+              filtered.push(items);
+              break;
+            }
+          }
+        });
+        // dataX = filtered;
+        scope.dataX = filtered;
+        return filtered;
+    } else {
+
+
+      return scope.dataX;
+    }
+
   }
 });
 
