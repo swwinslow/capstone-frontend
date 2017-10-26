@@ -42,7 +42,6 @@ app.factory('APIFactory', function($http){
     }
 
   data.editStation = function (station) {
-
         return $http({
             method: "POST",
             url: baseURL + '/EditSingleStation.php',
@@ -66,7 +65,6 @@ app.factory('APIFactory', function($http){
     }
 
     data.createStation = function (station) {
-
           return $http({
               method: "POST",
               url: baseURL + '/AddStation.php',
@@ -79,14 +77,14 @@ app.factory('APIFactory', function($http){
                   "slogan"        : station.slogan,
                   "type"          : station.type,
                   "genre"         : station.genre,
-                  "active"        : station.active,
-                  "delete"        : station.delete
+                  "active"        : station.active
               }),
               headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
               }
           });
       }
+
 
   return data;
 });

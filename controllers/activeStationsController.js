@@ -221,10 +221,18 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           }
         };
 
-        $scope.activeStation = function(station){
-          console.log("LOL");
+        $scope.createActiveStation = function(station){
           station.delete = 0;
           station.active = 1;
+          APIFactory.createStation(station).then(function (response){
+              console.log(response);
+          });
+        }
+
+        $scope.createPendingStation = function(station){
+          console.log('lol');
+          station.delete = 0;
+          station.active = 0;
           APIFactory.createStation(station).then(function (response){
               console.log(response);
           });

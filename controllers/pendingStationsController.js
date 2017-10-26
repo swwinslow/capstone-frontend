@@ -115,9 +115,20 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
           }
         };
 
-        //KRISTEN: LOOOK AT THIS:::::
-        //active = 1 delete = 0 >>>>>> active station
-        //active = 0 delete = 0 >>>>> pending station
-        //active = 1 or 0 delete = 1 >> delete station
+        $scope.createActiveStation = function(station){
+          station.delete = 0;
+          station.active = 1;
+          APIFactory.createStation(station).then(function (response){
+              console.log(response);
+          });
+        }
 
+        $scope.createPendingStation = function(station){
+          console.log('lol');
+          station.delete = 0;
+          station.active = 0;
+          APIFactory.createStation(station).then(function (response){
+              console.log(response);
+          });
+        }
 });

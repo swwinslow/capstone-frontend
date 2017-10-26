@@ -76,7 +76,8 @@
             <td><input ng-model="createNewStation.slogan" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
-            <td><button ng-click="activeStation(createNewStation)"> Active </button><button ng-click=""> Pending </button></td>
+            <td><button ng-click="createActiveStation(createNewStation)"> Active </button>
+              <button ng-click="createPendingStation(createNewStation)"> Pending </button></td>
           </tr>
         </table>
       </div>
