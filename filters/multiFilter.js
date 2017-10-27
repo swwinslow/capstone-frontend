@@ -1,5 +1,4 @@
 app.filter('genre', function() {
-  // if ($scope.editMode == true){
     return function(items, filterWords, editMode, scope) {
       if(!editMode){
         var filtered = [];
@@ -12,10 +11,10 @@ app.filter('genre', function() {
           }
         });
         // dataX = filtered;
-        scope.dataX = filtered;
+        scope.savedGenreData = filtered;
         return filtered;
     } else {
-      return scope.dataX;
+      return scope.savedGenreData;
     }
 
   }

@@ -26,7 +26,7 @@
             <h2>Filter By:</h2>
             <div class="col-4">
               <h3 ng-click="myFuncGenre()">Genre<i ng-show="showicon5" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon6" class="fa fa-caret-right" aria-hidden="true"></i></h3>
-              <div ng-show="showGenre" ng-repeat="genre in genreArray" class="dropdown">
+              <div ng-show="showGenre" ng-repeat="genre in genreArray track by $index" class="dropdown">
                 <input type="checkbox" ng-checked="genre.isClicked" ng-change="addGenre(genre)" ng-model="myValue" />{{genre}} <br />
                 <!-- <input type="checkbox" ng-change="addGenre(genre)" ng-model="genre" ng-checked="true">{{genre}}<br/> -->
               </div>
@@ -34,14 +34,14 @@
 
             <div class="col-4">
               <h3 ng-click="myFuncOwnership()">Ownership<i ng-show="showicon3" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon4" class="fa fa-caret-right" aria-hidden="true"></i></h3>
-              <div ng-show="showOwnership" ng-repeat="owner in typeArray" class="dropdown">
+              <div ng-show="showOwnership" ng-repeat="owner in typeArray track by $index" class="dropdown">
                 <input type="checkbox" ng-checked="owner.isClicked" ng-change="addOwnership(owner)" ng-model="myValue"> {{owner}}<br/>
               </div>
             </div>
 
             <div class="col-4">
               <h3 ng-click="myFuncGeographical()">Geographical<i ng-show="showicon2" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon1" class="fa fa-caret-right" aria-hidden="true"></i></h3>
-              <div ng-show="showGeo" ng-repeat="state in stateArray" class="dropdown">
+              <div ng-show="showGeo" ng-repeat="state in stateArray track by $index" class="dropdown">
                 <input type="checkbox" ng-checked="state.isClicked" ng-change="addGeo(state)" ng-model="myValue"> {{state}}<br/>
               </div>
             </div>
@@ -96,6 +96,8 @@
             <th ng-click="sortMethod('slogan')">Slogan</th>
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
+            <th ng-click="sortMethod('genre')">Stream</th>
+
             <th>Edit</th>
             <th>Make Pending</th>
             <th>Delete</th>
@@ -110,6 +112,7 @@
             <td><input type="text" ng-model="station.slogan" style="width:120px" ng-disabled="station.edit" required></td>
             <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.stream" style="width:80px" ng-disabled="station.edit" required ></td>
             <td>
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
