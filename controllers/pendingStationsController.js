@@ -61,6 +61,7 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
             $scope.pendingStations = response.data.pending;
             $scope.deletedStations = response.data.deleted;
 
+            console.log(response);
             for(var i = 0; i < $scope.pendingStations.length; i++){
                 $scope.pendingStations[i].edit = true;
             }

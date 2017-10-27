@@ -1,4 +1,4 @@
-app.controller('activeStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
+app.controller('activeStationsController', function($scope, $timeout,  APIFactory, $rootScope, $route) {
 
         $scope.showGeo = false;
         $scope.showGenre = false;
@@ -23,49 +23,95 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
 
 
+        // selectedGenreData
+        // genreArray
 
         $scope.addGenre = function (genre){
           var found = false;
 
-
-
-          for(var i = 0; i < $scope.selectedGenreData.length; i++){
-            if(genre === $scope.selectedGenreData[i]){
-              $scope.selectedGenreData.splice(i, 1);
-              found = true;
+          if($scope.selectedGenreData.length == $scope.genreArray.length){
+            $scope.selectedGenreData = [];
+            $scope.selectedGenreData.push(genre);
+          } else {
+            var count = $scope.selectedGenreData.length;
+            for(var i = 0; i < $scope.selectedGenreData.length; i++){
+              //removing the object
+              var found2 = false
+              if($scope.selectedGenreData[i] == genre){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedGenreData = $scope.genreArray;
+                  found2 = true;
+                } else {
+                  $scope.selectedGenreData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedGenreData.push(genre);
             }
           }
-          if(found == false){
-            $scope.selectedGenreData.push(genre);
-          }
-          console.log($scope.selectedGenreData);
         };
 
+// $scope.selectedStateData.length
+// $scope.stateArray.length
         $scope.addGeo = function (geo){
           var found = false;
-          for(var i = 0; i < $scope.selectedStateData.length; i++){
-            if(geo === $scope.selectedStateData[i]){
-              $scope.selectedStateData.splice(i, 1);
-              found = true;
-            }
-          }
-          if(found == false){
+
+          if($scope.selectedStateData.length == $scope.stateArray.length){
+            $scope.selectedStateData = [];
             $scope.selectedStateData.push(geo);
+          } else {
+            var count = $scope.selectedStateData.length;
+            for(var i = 0; i < $scope.selectedStateData.length; i++){
+              //removing the object
+              var found2 = false
+              if($scope.selectedStateData[i] == geo){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedStateData = $scope.stateArray;
+                  found2 = true;
+                } else {
+                  $scope.selectedStateData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedStateData.push(geo);
+            }
           }
         };
 
+        // $scope.typeArray.push(response.data.types[i].type);
+        // $scope.selectedTypeData.push(response.data.types[i].type);
 
         $scope.addOwnership = function (ownership){
           var found = false;
-          for(var i = 0; i < $scope.selectedTypeData.length; i++){
-            console.log($scope.selectedTypeData[i]);
-            if(ownership === $scope.selectedTypeData[i]){
-              $scope.selectedTypeData.splice(i, 1);
-              found = true;
-            }
-          }
-          if(found == false){
+
+          if($scope.selectedTypeData.length == $scope.typeArray.length){
+            $scope.selectedTypeData = [];
             $scope.selectedTypeData.push(ownership);
+          } else {
+            var count = $scope.selectedTypeData.length;
+            for(var i = 0; i < $scope.selectedTypeData.length; i++){
+              //removing the object
+              var found2 = false
+              if($scope.selectedTypeData[i] == ownership){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedTypeData = $scope.typeArray;
+                  found2 = true;
+                }  else {
+                  $scope.selectedTypeData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedTypeData.push(ownership);
+            }
           }
         };
 
@@ -153,6 +199,9 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
          }
 
          $scope.savedGenreData;
+         $scope.savedTypeData;
+         $scope.savedStateData;
+
 
         APIFactory.getInformation().then(function (response){
 
@@ -160,10 +209,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.stateArray = [];
             $scope.genreArray = [];
             console.log(response);
-
-            // $scope.typeArray.push(response.data.types[i].type);
-            // $scope.selectedTypeData.push(response.data.types[i].type);
-
 
             $scope.yyy = [];
             for (var i = 0; i < response.data.types.length; i++){
@@ -183,7 +228,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   $scope.yyy.push(response.data.types[i].type);
                   $scope.typeArray.push(response.data.types[i].type);
                   $scope.selectedTypeData.push(response.data.types[i].type);
-
                 }
               }
             }
@@ -220,10 +264,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.genreArray[i].isClicked = true;
             }
 
-
-
-            // $scope.stateArray.push(response.data.states[i].state);
-            // $scope.selectedStateData.push(response.data.states[i].state);
             $scope.zzz = [];
 
             for (var i = 0; i < response.data.states.length; i++){
@@ -259,12 +299,13 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           for(var i = 0; i < $scope.activeStations.length; i++){
             if($scope.activeStations[i].id == station.id){
               $scope.activeStations[i].edit = true;
+              $scope.editMode = false;
             }
           }
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
-
+          $route.reload();
         }
 
         $scope.deleteStation = function(id) {
