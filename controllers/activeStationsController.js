@@ -53,7 +53,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.selectedGenreData.push(genre);
             }
           }
-          console.log($scope.selectedGenreData);
         };
 
 // $scope.selectedStateData.length
@@ -182,7 +181,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         APIFactory.getAllStations().then(function (response){
             $scope.allActiveStations = response.data.active;
             $scope.activeStations = response.data.active;
-            console.log(response.data.active);
 
             for(var i = 0; i < $scope.activeStations.length; i++){
                 $scope.activeStations[i].edit = true;
@@ -210,26 +208,27 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.typeArray = [];
             $scope.stateArray = [];
             $scope.genreArray = [];
-            console.log(response);
 
             $scope.yyy = [];
             for (var i = 0; i < response.data.types.length; i++){
-              if(i == 0){
-                $scope.yyy.push(response.data.types[i].type);
-                $scope.typeArray.push(response.data.types[i].type);
-                $scope.selectedTypeData.push(response.data.types[i].type);
-
-              } else {
-                var same = false;
-                for (var j = 0; j < $scope.yyy.length; j++){
-                  if($scope.yyy[j] === response.data.types[i].type){
-                    same = true;
-                  }
-                }
-                if(same == false ){
+              if(response.data.types[i].type != ""){
+                if(i == 0){
                   $scope.yyy.push(response.data.types[i].type);
                   $scope.typeArray.push(response.data.types[i].type);
                   $scope.selectedTypeData.push(response.data.types[i].type);
+
+                } else {
+                  var same = false;
+                  for (var j = 0; j < $scope.yyy.length; j++){
+                    if($scope.yyy[j] === response.data.types[i].type){
+                      same = true;
+                    }
+                  }
+                  if(same == false ){
+                    $scope.yyy.push(response.data.types[i].type);
+                    $scope.typeArray.push(response.data.types[i].type);
+                    $scope.selectedTypeData.push(response.data.types[i].type);
+                  }
                 }
               }
             }
@@ -241,6 +240,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.xxx = [];
 
             for (var i = 0; i < response.data.genre.length; i++){
+              if(response.data.genre[i].genre != ""){
                 if(i == 0){
                   $scope.xxx.push(response.data.genre[i].genre);
                   $scope.selectedGenreData.push(response.data.genre[i].genre);
@@ -258,6 +258,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                     $scope.genreArray.push(response.data.genre[i].genre);
                   }
                 }
+              }
             }
 
 
@@ -269,21 +270,23 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.zzz = [];
 
             for (var i = 0; i < response.data.states.length; i++){
-              if(i == 0){
-                $scope.zzz.push(response.data.states[i].state);
-                $scope.stateArray.push(response.data.states[i].state);
-                $scope.selectedStateData.push(response.data.states[i].state);
-              } else {
-                var same = false;
-                for (var j = 0; j < $scope.zzz.length; j++){
-                  if($scope.zzz[j] === response.data.states[i].state){
-                    same = true;
-                  }
-                }
-                if(same == false ){
+              if(response.data.states[i].state != ""){
+                if(i == 0){
                   $scope.zzz.push(response.data.states[i].state);
                   $scope.stateArray.push(response.data.states[i].state);
                   $scope.selectedStateData.push(response.data.states[i].state);
+                } else {
+                  var same = false;
+                  for (var j = 0; j < $scope.zzz.length; j++){
+                    if($scope.zzz[j] === response.data.states[i].state){
+                      same = true;
+                    }
+                  }
+                  if(same == false ){
+                    $scope.zzz.push(response.data.states[i].state);
+                    $scope.stateArray.push(response.data.states[i].state);
+                    $scope.selectedStateData.push(response.data.states[i].state);
+                  }
                 }
               }
             }
@@ -305,7 +308,9 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
           }
           APIFactory.editStation(station).then(function (response){
-              console.log(response);
+              //todo FIX DATA
+          }, function (error){
+
           });
           $route.reload();
         }
@@ -322,7 +327,9 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   station.active = 0;
                   $scope.activeStations.splice(i,1);
                   APIFactory.editStation(station).then(function (response){
-                      console.log(response);
+                      //todo fix data
+                  }, function(error){
+
                   });
                 }
               }
@@ -345,7 +352,10 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   station.active = 0;
                   $scope.activeStations.splice(i,1);
                   APIFactory.editStation(station).then(function (response){
+                    //todo fix data
                       console.log(response);
+                  }, function (error){
+
                   });
                 }
               }
@@ -359,19 +369,31 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
 
         $scope.createActiveStation = function(station){
+
+          //todo: validate DATA!!!!!
           station.delete = 0;
           station.active = 1;
           APIFactory.createStation(station).then(function (response){
-              console.log(response);
+              console.log(response.data.stations[0]);
+              $scope.createNewStation = "";
+              $scope.addStation = false;
+              $scope.activeStations.push(response.data.stations[0]);
+              window.alert("Station Added");
+              $route.reload();
+
+
+          }, function (error){
+                //todo... fix data
           });
         }
 
         $scope.createPendingStation = function(station){
-          console.log('lol');
           station.delete = 0;
           station.active = 0;
           APIFactory.createStation(station).then(function (response){
               console.log(response);
+          }, function(error){
+            //todo... fix data
           });
         }
 });
