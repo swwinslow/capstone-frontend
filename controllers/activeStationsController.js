@@ -27,6 +27,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         // genreArray
 
         $scope.addGenre = function (genre){
+
           var found = false;
 
           if($scope.selectedGenreData.length == $scope.genreArray.length){
@@ -34,11 +35,12 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.selectedGenreData.push(genre);
           } else {
             var count = $scope.selectedGenreData.length;
+            var found2 = false
             for(var i = 0; i < $scope.selectedGenreData.length; i++){
               //removing the object
-              var found2 = false
               if($scope.selectedGenreData[i] == genre){
                 //if the count is dropping to 0, then refill with the orginal
+
                 if(count == 1){
                   $scope.selectedGenreData = $scope.genreArray;
                   found2 = true;
@@ -52,6 +54,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.selectedGenreData.push(genre);
             }
           }
+          console.log($scope.selectedGenreData);
         };
 
 // $scope.selectedStateData.length
@@ -82,6 +85,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.selectedStateData.push(geo);
             }
           }
+          console.log($scope.selectedGenreData);
         };
 
         // $scope.typeArray.push(response.data.types[i].type);
@@ -155,7 +159,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             $scope.orderByTerm = !$scope.orderByTerm;
           } else {
             $scope.orderBySearch = name;
-            $scope.orderByTerm = true;
+            $scope.orderByTerm = false;
           }
         }
 
