@@ -85,6 +85,20 @@ app.factory('APIFactory', function($http){
           });
       }
 
+      data.DeleteStationForever = function (station) {
+            return $http({
+                method: "POST",
+                url: baseURL + '/DeleteStationForever.php',
+                data: serializeData ({
+                    "id"    : station.id
+                }),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+        }
+
+
 
   return data;
 });

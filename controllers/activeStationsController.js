@@ -40,7 +40,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               //removing the object
               if($scope.selectedGenreData[i] == genre){
                 //if the count is dropping to 0, then refill with the orginal
-
                 if(count == 1){
                   $scope.selectedGenreData = $scope.genreArray;
                   found2 = true;
@@ -85,7 +84,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.selectedStateData.push(geo);
             }
           }
-          console.log($scope.selectedGenreData);
         };
 
         // $scope.typeArray.push(response.data.types[i].type);
@@ -313,17 +311,52 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         }
 
         $scope.deleteStation = function(id) {
-          for(var i = 0; i < $scope.activeStations.length; i++){
-            if($scope.activeStations[i].id == id){
-              var station = $scope.activeStations[i];
-              station.delete = 1;
-              station.active = 0;
-              APIFactory.editStation(station).then(function (response){
-                  console.log(response);
-              });
+
+          var txt;
+
+            if (confirm("Do you want to delete this station") == true) {
+              for(var i = 0; i < $scope.activeStations.length; i++){
+                if($scope.activeStations[i].id == id){
+                  var station = $scope.activeStations[i];
+                  station.delete = 1;
+                  station.active = 0;
+                  $scope.activeStations.splice(i,1);
+                  APIFactory.editStation(station).then(function (response){
+                      console.log(response);
+                  });
+                }
+              }
+              alert("Station Deleted");
+            } else {
+
             }
-          }
+
         };
+
+        $scope.pendingStation = function(id) {
+
+          var txt;
+
+            if (confirm("Do you want to change this station to pending") == true) {
+              for(var i = 0; i < $scope.activeStations.length; i++){
+                if($scope.activeStations[i].id == id){
+                  var station = $scope.activeStations[i];
+                  station.delete = 0;
+                  station.active = 0;
+                  $scope.activeStations.splice(i,1);
+                  APIFactory.editStation(station).then(function (response){
+                      console.log(response);
+                  });
+                }
+              }
+              alert("Station Moved to Pending");
+            } else {
+
+            }
+
+        };
+
+
 
         $scope.createActiveStation = function(station){
           station.delete = 0;
