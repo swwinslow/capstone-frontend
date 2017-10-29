@@ -1,6 +1,9 @@
 
 <div ng-controller='activeStationsController' class="stations-page">
-  <h1 style="text-align:center"> Midwest Application Stations</h1>
+  <div class="header">
+    <img src="icon.png" height=100px;>
+    <h1>Midwest Application Stations</h1>
+  </div>
 
   <div class="container">
     <div class="row">
@@ -11,9 +14,9 @@
       </div>
       <div class="col-9 filters">
         <form>
-          <div class="col-6">
+          <div class="col-6 status">
             <h2>Status:
-              <button><a href="#/">Active</a></button>
+              <a href="#/"><button class="current-status">Active</button></a>
               <button><a href="#/pending">Pending</a></button>
               <button><a href="#/deleted">Deleted</a></button></h2>
           </div>
