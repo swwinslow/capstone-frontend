@@ -64,6 +64,7 @@
             <th ng-click="sortMethod('genre')">Genre</th>
             <th>Edit</th>
             <th>Move</th>
+            <th>Delete Forever</th>
           </thead>
 
           <tr ng-repeat="station in deletedStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
@@ -79,8 +80,8 @@
               <button ng-click="editStation(station.id)" ng-hide="station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="!station.edit"> Save </button>
             </td>
-
-            <td><button ng-click="activateStation(station.id)" > Activate </button><button ng-click="pendStation(station.id)" > Pending </button></td>
+            <td><button ng-click="activateStation(station.id)"> Activate </button><button ng-click="pendStation(station.id)" > Pending </button></td>
+            <td><button>Delete</button></td>
           </tr>
         </table>
       </div>

@@ -148,7 +148,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         }
 
         $scope.showAddStation = function(){
-          $scope.addStation = true;
+          $scope.addStation = !$scope.addStation;
         }
 
         $scope.sortMethod = function(name){
