@@ -21,8 +21,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
         $scope.selectedStateData = [];
 
-
-
         // selectedGenreData
         // genreArray
 
@@ -187,7 +185,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
             }
         });
 
-          $scope.editMode = false;
+        $scope.editMode = false;
 
         $scope.editStation = function(id){
           for(var i = 0; i < $scope.activeStations.length; i++){

@@ -24,9 +24,8 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
           $scope.showMe = !$scope.showMe;
         }
 
-
         $scope.showAddStation = function(){
-          $scope.addStation = true;
+          $scope.addStation = !$scope.addStation;
         }
 
         $scope.sortMethod = function(name){
