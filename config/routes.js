@@ -1,20 +1,32 @@
-app.config(['$routeProvider', function($routeProvider) {
+app.config(['$routeProvider', function($routeProvider, sessionService) {
   $routeProvider
   .when("/", {
       templateUrl : "views/activeStations.html",
-      controller : "activeStationsController"
+      controller : "activeStationsController",
+      resolve: {
+        'data': isAuthenticated
+      }
   })
   .when("/pending", {
       templateUrl : "views/pendingStations.html",
-      controller : "pendingStationsController"
+      controller : "pendingStationsController",
+      resolve: {
+        'data': isAuthenticated
+      }
   })
   .when("/deleted", {
       templateUrl : "views/deletedStations.html",
-      controller : "deletedStationsController"
+      controller : "deletedStationsController",
+      resolve: {
+        'data': isAuthenticated
+      }
   })
   .when("/popular", {
       templateUrl : "views/popular.html",
       controller: "popularController",
+      resolve: {
+        'data': isAuthenticated
+      }
 
   })
   .otherwise({
@@ -23,23 +35,18 @@ app.config(['$routeProvider', function($routeProvider) {
   });
 }]);
 
-var isAuthenticated = function ($rootScope, $location, sessionService,) {
+var isAuthenticated = function ($rootScope, $location, sessionService, APIFactory) {
     var session = sessionService.hasRecentSession();
     if (session) {
-        $rootScope.isLoggedIn = true;
 
-        UserFactory.getAuth().then(function (response){
-            var data = response.data.data;
-            if (data.auth_level == 1){
-                $rootScope.AuthUser = true;
-            } else {
-                $rootScope.AuthUser = false;
-            }
-        }, function(error){
-            window.alert('Network Error. Please try again.');
-            $location.path('/');
-        });
-        return true;
+        // $rootScope.isLoggedIn = true;
+        // //API FACTORY CALL
+        // APIFactory.checkSession().then(function (response){
+        // }, function(error){
+        //   $rootScope.redirect = $location.path();
+        //   window.location = "http://willshare.com/cs495/admin/frontend/#/"
+        // });
+
     } else {
         $rootScope.redirect = $location.path();
         $location.path("/login");

@@ -1,5 +1,7 @@
 app.controller('pendingStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
 
+
+
         $scope.showGeo = false;
         $scope.showGenre = false;
         $scope.showOwnership = false;

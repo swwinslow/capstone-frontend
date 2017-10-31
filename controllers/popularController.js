@@ -1,5 +1,6 @@
 app.controller('popularController', function($scope, APIFactory) {
 
+
   $scope.orderBySearch = '';
   $scope.orderByTerm = false;
 

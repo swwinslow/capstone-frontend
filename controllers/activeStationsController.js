@@ -1,4 +1,4 @@
-app.controller('activeStationsController', function($scope, $timeout,  APIFactory, $rootScope, $route) {
+app.controller('activeStationsController', function($scope, $timeout,  APIFactory, $rootScope, $route, $location) {
 
         $scope.showGeo = false;
         $scope.showGenre = false;
