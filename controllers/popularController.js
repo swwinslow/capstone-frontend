@@ -20,4 +20,18 @@ app.controller('popularController', function($scope, APIFactory) {
   });
 
 
+  $scope.sortFunc = function(votes){
+
+    $scope.orderByFunction = function(friend){
+    return parseInt(friend.age);
+};
+    console.log('lol');
+
+      $scope.orderBySearch = '-votes';
+      $scope.orderByTerm = true;
+
+  }
+
+
+
 });

@@ -1,8 +1,7 @@
-app.factory('APIFactory', function($http, $rootScope){
+app.factory('APIFactory', function($http){
 
   var data = {};
   var baseURL = "http://willshare.com/cs495/MidwestRadioPlayer";
-  var adminBASE = "http://willshare.com/cs495/admin";
 
   data.getAllStations = function() {
     return $http.get(baseURL + '/GetAllStations.php');
@@ -102,18 +101,15 @@ app.factory('APIFactory', function($http, $rootScope){
         data.checkSession = function () {
               return $http({
                   method: "POST",
-                  url: adminBASE + '/SessionCheck.php',
+                  url: baseURL + '/SessionCheck.php',
                   data: serializeData ({
-                    "session_id"    : localStorage.getItem("session_id"),
-                    "session_key"   : localStorage.getItem("session_key")
+                    "session_id"    : $rootScope.userSessionId,
+                    "session_key"   : $rootScope.userSessionKey
                   }),
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded'
                   }
               });
           }
-
-
-
-  return data;
+    return data;
 });
