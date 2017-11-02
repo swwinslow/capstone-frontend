@@ -1,10 +1,11 @@
-app.controller('pendingStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
-
+  app.controller('pendingStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
 
 
         $scope.showGeo = false;
         $scope.showGenre = false;
         $scope.showOwnership = false;
+
+
         $scope.showMe = false;
         $scope.showicon1 = true;
         $scope.showicon2 = false;
@@ -21,6 +22,100 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
 
         $scope.orderBySearch = '';
         $scope.orderByTerm = false;
+
+        $scope.selectedGenres = [];
+        $scope.selectedOwnership = [];
+        $scope.selectedGeo = [];
+
+        $scope.selectedGenreData = [];
+        $scope.selectedTypeData = [];
+        $scope.selectedStateData = [];
+
+        $scope.addGenre = function (genre){
+
+          var found = false;
+
+          if($scope.selectedGenreData.length == $scope.genreArray.length){
+            $scope.selectedGenreData = [];
+            $scope.selectedGenreData.push(genre);
+          } else {
+            var count = $scope.selectedGenreData.length;
+            var found2 = false
+            for(var i = 0; i < $scope.selectedGenreData.length; i++){
+              //removing the object
+              if($scope.selectedGenreData[i] == genre){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedGenreData = $scope.genreArray;
+                  found2 = true;
+                } else {
+                  $scope.selectedGenreData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedGenreData.push(genre);
+            }
+          }
+        };
+
+        $scope.addGeo = function (geo){
+          var found = false;
+
+          if($scope.selectedStateData.length == $scope.stateArray.length){
+            $scope.selectedStateData = [];
+            $scope.selectedStateData.push(geo);
+          } else {
+            var count = $scope.selectedStateData.length;
+            for(var i = 0; i < $scope.selectedStateData.length; i++){
+              //removing the object
+              var found2 = false
+              if($scope.selectedStateData[i] == geo){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedStateData = $scope.stateArray;
+                  found2 = true;
+                } else {
+                  $scope.selectedStateData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedStateData.push(geo);
+            }
+          }
+        };
+
+
+        $scope.addOwnership = function (ownership){
+          var found = false;
+
+          if($scope.selectedTypeData.length == $scope.typeArray.length){
+            $scope.selectedTypeData = [];
+            $scope.selectedTypeData.push(ownership);
+          } else {
+            var count = $scope.selectedTypeData.length;
+            for(var i = 0; i < $scope.selectedTypeData.length; i++){
+              //removing the object
+              var found2 = false
+              if($scope.selectedTypeData[i] == ownership){
+                //if the count is dropping to 0, then refill with the orginal
+                if(count == 1){
+                  $scope.selectedTypeData = $scope.typeArray;
+                  found2 = true;
+                }  else {
+                  $scope.selectedTypeData.splice(i,1);
+                  found2 = true;
+                }
+              }
+            }
+            if(found2 == false){
+              $scope.selectedTypeData.push(ownership);
+            }
+          }
+        };
 
         $scope.myFun = function(){
           $scope.showMe = !$scope.showMe;
@@ -76,24 +171,99 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
           }
          }
 
-        APIFactory.getInformation().then(function (response){
+         APIFactory.getPendingInformation().then(function (response){
 
-            $scope.typeArray = [];
-            $scope.stateArray = [];
-            $scope.genreArray = [];
+             $scope.typeArray = [];
+             $scope.stateArray = [];
+             $scope.genreArray = [];
 
-            for (var i = 0; i < response.data.types.length - 1; i++){
-              $scope.typeArray.push(response.data.types[i].type);
-            }
+             $scope.yyy = [];
+             for (var i = 0; i < response.data.types.length; i++){
+               if(response.data.types[i].type != ""){
+                 if(i == 0){
+                   $scope.yyy.push(response.data.types[i].type);
+                   $scope.typeArray.push(response.data.types[i].type);
+                   $scope.selectedTypeData.push(response.data.types[i].type);
 
-            for (var i = 0; i < response.data.genre.length - 1; i++){
-              $scope.genreArray.push(response.data.genre[i].genre);
-            }
+                 } else {
+                   var same = false;
+                   for (var j = 0; j < $scope.yyy.length; j++){
+                     if($scope.yyy[j] === response.data.types[i].type){
+                       same = true;
+                     }
+                   }
+                   if(same == false ){
+                     $scope.yyy.push(response.data.types[i].type);
+                     $scope.typeArray.push(response.data.types[i].type);
+                     $scope.selectedTypeData.push(response.data.types[i].type);
+                   }
+                 }
+               }
+             }
 
-            for (var i = 0; i < response.data.states.length - 1; i++){
-              $scope.stateArray.push(response.data.states[i].state);
-            }
-        });
+             for(var i = 0; i < $scope.typeArray.length; i++){
+               $scope.typeArray[i].isClicked = true;
+             }
+
+             $scope.xxx = [];
+
+             for (var i = 0; i < response.data.genre.length; i++){
+               if(response.data.genre[i].genre != ""){
+                 if(i == 0){
+                   $scope.xxx.push(response.data.genre[i].genre);
+                   $scope.selectedGenreData.push(response.data.genre[i].genre);
+                   $scope.genreArray.push(response.data.genre[i].genre);
+                 } else {
+                   var same = false;
+                   for (var j = 0; j < $scope.xxx.length; j++){
+                     if($scope.xxx[j] === response.data.genre[i].genre){
+                       same = true;
+                     }
+                   }
+                   if(same == false ){
+                     $scope.xxx.push(response.data.genre[i].genre);
+                     $scope.selectedGenreData.push(response.data.genre[i].genre);
+                     $scope.genreArray.push(response.data.genre[i].genre);
+                   }
+                 }
+               }
+             }
+
+
+
+             for(var i = 0; i < $scope.genreArray.length; i++){
+               $scope.genreArray[i].isClicked = true;
+             }
+
+             $scope.zzz = [];
+
+             for (var i = 0; i < response.data.states.length; i++){
+               if(response.data.states[i].state != ""){
+                 if(i == 0){
+                   $scope.zzz.push(response.data.states[i].state);
+                   $scope.stateArray.push(response.data.states[i].state);
+                   $scope.selectedStateData.push(response.data.states[i].state);
+                 } else {
+                   var same = false;
+                   for (var j = 0; j < $scope.zzz.length; j++){
+                     if($scope.zzz[j] === response.data.states[i].state){
+                       same = true;
+                     }
+                   }
+                   if(same == false ){
+                     $scope.zzz.push(response.data.states[i].state);
+                     $scope.stateArray.push(response.data.states[i].state);
+                     $scope.selectedStateData.push(response.data.states[i].state);
+                   }
+                 }
+               }
+             }
+
+             for(var i = 0; i < $scope.stateArray.length; i++){
+               $scope.stateArray[i].isClicked = true;
+             }
+             $scope.$apply();
+         });
 
 
         $scope.updateStation = function(station){
@@ -130,17 +300,26 @@ app.controller('pendingStationsController', function($scope, $timeout,  APIFacto
               station.active = 1;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
+              }, function (error){
+                    //todo... fix data
               });
             }
           }
         };
 
         $scope.createPendingStation = function(station){
-          console.log('lol');
+          //todo: validate DATA!!!!!
           station.delete = 0;
           station.active = 0;
           APIFactory.createStation(station).then(function (response){
-              console.log(response);
+              console.log(response.data.stations[0]);
+              $scope.createNewStation = "";
+              $scope.addStation = false;
+              $scope.pendingStations.push(response.data.stations[0]);
+              window.alert("Station Created");
+              $route.reload();
+          }, function (error){
+                //todo... fix data
           });
         }
 });

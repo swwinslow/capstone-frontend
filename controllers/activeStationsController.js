@@ -21,9 +21,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
         $scope.selectedStateData = [];
 
-        // selectedGenreData
-        // genreArray
-
         $scope.addGenre = function (genre){
 
           var found = false;
@@ -53,8 +50,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           }
         };
 
-// $scope.selectedStateData.length
-// $scope.stateArray.length
         $scope.addGeo = function (geo){
           var found = false;
 
@@ -83,8 +78,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           }
         };
 
-        // $scope.typeArray.push(response.data.types[i].type);
-        // $scope.selectedTypeData.push(response.data.types[i].type);
 
         $scope.addOwnership = function (ownership){
           var found = false;
@@ -295,7 +288,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
         });
 
-
         $scope.updateStation = function(station){
           station.active = 1;
           station.delete = 0;
@@ -331,7 +323,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   });
                 }
               }
-              alert("Station Deleted");
             } else {
 
             }
@@ -357,7 +348,6 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   });
                 }
               }
-              alert("Station Moved to Pending");
             } else {
 
             }
@@ -385,13 +375,4 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
           });
         }
 
-        $scope.createPendingStation = function(station){
-          station.delete = 0;
-          station.active = 0;
-          APIFactory.createStation(station).then(function (response){
-              console.log(response);
-          }, function(error){
-            //todo... fix data
-          });
-        }
 });

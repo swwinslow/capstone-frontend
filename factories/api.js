@@ -11,6 +11,14 @@ app.factory('APIFactory', function($http){
     return $http.get(baseURL + '/GetInformation.php');
   }
 
+  data.getPendingInformation = function() {
+    return $http.get(baseURL + '/GetPendingInformation.php');
+  }
+
+  data.getDeletedInformation = function() {
+    return $http.get(baseURL + '/GetDeletedInformation.php');
+  }
+
   data.getPopular = function(){
     return $http.get(baseURL + '/GetAllPopular.php');
   }
@@ -54,6 +62,7 @@ app.factory('APIFactory', function($http){
                 "slogan"        : station.slogan,
                 "type"          : station.type,
                 "genre"         : station.genre,
+                "stream"        : station.stream,
                 "id"            : station.id,
                 "active"        : station.active,
                 "delete"        : station.delete
@@ -75,6 +84,7 @@ app.factory('APIFactory', function($http){
                   "city"          : station.city,
                   "state"         : station.state,
                   "slogan"        : station.slogan,
+                  "stream"        : station.stream,
                   "type"          : station.type,
                   "genre"         : station.genre,
                   "active"        : station.active

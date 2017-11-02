@@ -16,7 +16,6 @@
         <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
       </div>
       <div class="col-9 filters">
-        <form>
           <div class="col-6 status">
             <h2>Status:
               <button><a href="#/">Active</a></button>
@@ -33,25 +32,25 @@
             <div class="col-4">
               <h3 ng-click="myFuncGenre()">Genre<i ng-show="showicon5" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon6" class="fa fa-caret-right" aria-hidden="true"></i></h3>
               <div ng-show="showGenre" ng-repeat="genre in genreArray" class="dropdown">
-                <input type="checkbox" ng-checked="true">{{genre}}<br/>
+                <input type="checkbox" ng-checked="genre.isClicked" ng-change="addGenre(genre)" ng-model="myValue" />{{genre}} <br />
+                <!-- <input type="checkbox" ng-change="addGenre(genre)" ng-model="genre" ng-checked="true">{{genre}}<br/> -->
               </div>
             </div>
 
             <div class="col-4">
               <h3 ng-click="myFuncOwnership()">Ownership<i ng-show="showicon3" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon4" class="fa fa-caret-right" aria-hidden="true"></i></h3>
               <div ng-show="showOwnership" ng-repeat="owner in typeArray" class="dropdown">
-                <input type="checkbox" ng-checked="true"> {{owner}}<br/>
+                <input type="checkbox" ng-checked="owner.isClicked" ng-change="addOwnership(owner)" ng-model="myValue"> {{owner}}<br/>
               </div>
             </div>
 
             <div class="col-4">
               <h3 ng-click="myFuncGeographical()">Geographical<i ng-show="showicon2" class="fa fa-caret-down" aria-hidden="true"></i><i ng-show="showicon1" class="fa fa-caret-right" aria-hidden="true"></i></h3>
               <div ng-show="showGeo" ng-repeat="state in stateArray" class="dropdown">
-                <input type="checkbox" ng-checked="true"> {{state}}<br/>
+                <input type="checkbox" ng-checked="state.isClicked" ng-change="addGeo(state)" ng-model="myValue"> {{state}}<br/>
               </div>
             </div>
           </div>
-        </form>
       </div>
     </div>
   </div>
@@ -69,12 +68,13 @@
             <th ng-click="sortMethod('slogan')">Slogan</th>
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
+            <th ng-click="sortMethod('stream')">Stream</th>
             <th>Edit</th>
             <th>Move</th>
             <th>Delete Forever</th>
           </thead>
 
-          <tr ng-repeat="station in deletedStations | filter: searchKeyword | filter:{name:searchName, district:searchDistrict } | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
+          <tr ng-repeat="station in deletedStations |filter: searchKeyword | genre:selectedGenreData:editMode:this | state:selectedStateData:editMode:this | type:selectedTypeData:editMode:this | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
             <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="!station.edit" required></td>
             <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="!station.edit" required ></td>
             <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="!station.edit" required></td>
@@ -83,6 +83,7 @@
             <td><input type="text" ng-model="station.slogan" style="width:120px" ng-disabled="!station.edit" required></td>
             <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="!station.edit" required ></td>
             <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="!station.edit" required ></td>
+            <td><input type="text" ng-model="station.stream" style="width:80px" ng-disabled="!station.edit" required ></td>
             <td>
               <button ng-click="editStation(station.id)" ng-hide="station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="!station.edit"> Save </button>

@@ -17,7 +17,6 @@
         <div class="menu-item"><a href="http://localhost:8888/capstone-frontend/#/popular" class="popular">Popular</a></div>
       </div>
       <div class="col-9 filters">
-        <form>
           <div class="col-6 status">
             <h2>Status:
               <a href="#/"><button class="current-status">Active</button></a>
@@ -53,7 +52,6 @@
               </div>
             </div>
           </div>
-        </form>
       </div>
     </div>
   </div>
@@ -73,12 +71,13 @@
           <thead>
             <th>Frequency</th>
             <th>Name</th>
-            <th ng-click="sortMethod('short_name')">Abbreviation</th>
-            <th ng-click="sortMethod('city')">City</th>
-            <th ng-click="sortMethod('state')">State</th>
-            <th ng-click="sortMethod('slogan')">Slogan</th>
-            <th ng-click="sortMethod('type')">Type</th>
-            <th ng-click="sortMethod('genre')">Genre</th>
+            <th>Abbreviation</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Slogan</th>
+            <th>Type</th>
+            <th>Genre</th>
+            <th>Stream</th>
             <th>Save</th>
           </thead>
 
@@ -91,6 +90,7 @@
             <td><input ng-model="createNewStation.slogan" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.stream" type="text" style="width:80px" required></td>
             <td><button ng-click="createActiveStation(createNewStation)"> Activate </button></td>
           </tr>
         </table>

@@ -19,12 +19,11 @@ app.controller('popularController', function($scope, APIFactory) {
       $scope.popularArray = response.data.data;
   });
 
+  $scope.orderByFunction = function(x){
+      return parseInt(x.votes);
+  };
 
   $scope.sortFunc = function(votes){
-
-    $scope.orderByFunction = function(friend){
-    return parseInt(friend.age);
-};
     console.log('lol');
 
       $scope.orderBySearch = '-votes';
