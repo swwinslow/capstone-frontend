@@ -1,4 +1,4 @@
-  app.controller('pendingStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
+  app.controller('pendingStationsController', function($scope, $timeout,  APIFactory, $rootScope, $route) {
 
 
         $scope.showGeo = false;
@@ -262,7 +262,6 @@
              for(var i = 0; i < $scope.stateArray.length; i++){
                $scope.stateArray[i].isClicked = true;
              }
-             $scope.$apply();
          });
 
 
@@ -288,6 +287,8 @@
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
+              $scope.pendingStations.splice(i, 1);
+              break;
             }
           }
         };
@@ -303,8 +304,12 @@
               }, function (error){
                     //todo... fix data
               });
+              $scope.pendingStations.splice(i, 1);
+              break;
             }
           }
+          $route.reload();
+
         };
 
         $scope.createPendingStation = function(station){

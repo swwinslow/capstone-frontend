@@ -21,6 +21,9 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
 
         $scope.selectedStateData = [];
 
+        $scope.userEnteredPending = false;
+
+
         $scope.addGenre = function (genre){
 
           var found = false;
@@ -192,6 +195,24 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
          $scope.savedGenreData;
          $scope.savedTypeData;
          $scope.savedStateData;
+
+
+
+        APIFactory.getUserEnteredPendingInformation().then(function (response){
+          var data = response.data.user_entered_pending;
+
+          if(data.length > 0){
+            $scope.length = data.length;
+            $scope.userEnteredPending = true;
+            setTimeout(stopShowingInformation, 5000);
+          }
+
+        });
+
+        function stopShowingInformation(){
+             $scope.userEnteredPending = false;
+             $scope.$apply();
+        }
 
 
         APIFactory.getInformation().then(function (response){

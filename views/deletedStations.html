@@ -89,7 +89,7 @@
               <button ng-click="updateStation(station)" ng-hide="!station.edit"> Save </button>
             </td>
             <td><button ng-click="activateStation(station.id)"> Activate </button><button ng-click="pendStation(station.id)" > Pending </button></td>
-            <td><button>Delete</button></td>
+            <td><button ng-click="deleteForever(station.id)">Delete</button></td>
           </tr>
         </table>
       </div>

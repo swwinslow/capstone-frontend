@@ -19,6 +19,12 @@ app.factory('APIFactory', function($http){
     return $http.get(baseURL + '/GetDeletedInformation.php');
   }
 
+  data.getUserEnteredPendingInformation = function() {
+    return $http.get(baseURL + '/GetUEPendingStations.php');
+  }
+
+  //
+
   data.getPopular = function(){
     return $http.get(baseURL + '/GetAllPopular.php');
   }
@@ -95,12 +101,12 @@ app.factory('APIFactory', function($http){
           });
       }
 
-      data.DeleteStationForever = function (station) {
+      data.DeleteStationForever = function (id) {
             return $http({
                 method: "POST",
                 url: baseURL + '/DeleteStationForever.php',
                 data: serializeData ({
-                    "id"    : station.id
+                    "id"    : id
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

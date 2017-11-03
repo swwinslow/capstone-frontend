@@ -1,4 +1,4 @@
-app.controller('deletedStationsController', function($scope, $timeout,  APIFactory, $rootScope) {
+app.controller('deletedStationsController', function($scope, $timeout,  APIFactory, $rootScope, $route) {
 
         $scope.showGeo = false;
         $scope.showGenre = false;
@@ -278,6 +278,8 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
+              $scope.deletedStations.splice(i,1);
+              break;
             }
           }
         }
@@ -291,6 +293,24 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
+              $scope.deletedStations.splice(i,1);
+              break;
+            }
+          }
+        }
+
+        $scope.deleteForever = function(id){
+          console.log('lol');
+          for(var i = 0; i < $scope.deletedStations.length; i++){
+            if($scope.deletedStations[i].id == id){
+              var station = $scope.deletedStations[i];
+              APIFactory.DeleteStationForever(id).then(function (response){
+                  console.log(response);
+              }, function (error){
+                  //todo there is an error
+              });
+              $scope.deletedStations.splice(i,1);
+              break;
             }
           }
         }
