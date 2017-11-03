@@ -186,6 +186,10 @@ input[type="search"]{
   font-size: 18px;
 }
 
+.stations-page{
+  margin-bottom: 20px;
+}
+
 /* POPULAR PAGE */
 .popular-page h1{
   color: #22477e;
