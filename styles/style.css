@@ -78,6 +78,10 @@ table{
   width: 100%;
 }
 
+.enteredStation {
+  background-color: #ADD8E6;
+}
+
 th{
   padding: 5px;
   border-bottom: 1px solid #000000;

@@ -157,6 +157,14 @@
             $scope.pendingStations = response.data.pending;
             $scope.deletedStations = response.data.deleted;
 
+            var uepending = response.data.pendingUE;
+
+            for(var i = 0; i < uepending.length; i++){
+              var item = uepending[i];
+              item.isUserEntered = "true";
+              $scope.pendingStations.push(item);
+            }
+        // response.data.pendingUE
             console.log(response);
             for(var i = 0; i < $scope.pendingStations.length; i++){
                 $scope.pendingStations[i].edit = true;
@@ -275,6 +283,8 @@
           }
           APIFactory.editStation(station).then(function (response){
               console.log(response);
+          }, function (error){
+            //todo error message
           });
         }
 
@@ -284,6 +294,7 @@
               var station = $scope.pendingStations[i];
               station.delete = 1;
               station.active = 0;
+              station.user_entered = 0;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
@@ -299,6 +310,7 @@
               var station = $scope.pendingStations[i];
               station.delete = 0;
               station.active = 1;
+              station.user_entered = 0;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               }, function (error){

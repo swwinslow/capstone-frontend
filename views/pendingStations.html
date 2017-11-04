@@ -108,15 +108,15 @@
           </thead>
 
           <tr ng-repeat="station in pendingStations |filter: searchKeyword | genre:selectedGenreData:editMode:this | state:selectedStateData:editMode:this | type:selectedTypeData:editMode:this | orderBy: orderBySearch:orderByTerm" ng-show='showActive'>
-            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-disabled="station.edit" required></td>
-            <td><input type="text" ng-model="station.long_name" style="width:80px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.short_name" style="width:100px" ng-disabled="station.edit" required></td>
-            <td><input type="text" ng-model="station.city" style="width:80px" ng-disabled="station.edit" required></td>
-            <td><input type="text" ng-model="station.state" style="width:30px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.slogan" style="width:120px" ng-disabled="station.edit" required></td>
-            <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="station.edit" required ></td>
-            <td><input type="text" ng-model="station.stream" style="width:80px" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.frequency" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.long_name" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.short_name" style="width:100px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.city" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.state" style="width:30px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.slogan" style="width:120px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required></td>
+            <td><input type="text" ng-model="station.type" style="width:120px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.genre" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.stream" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
             <td>
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>

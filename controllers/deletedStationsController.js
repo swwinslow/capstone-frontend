@@ -258,6 +258,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
         $scope.updateStation = function(station){
           station.active = 0;
           station.delete = 1;
+          station.user_entered = 0;
           for(var i = 0; i < $scope.deletedStations.length; i++){
             if($scope.deletedStations[i].id == station.id){
               $scope.deletedStations[i].edit = false;
@@ -275,6 +276,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               var station = $scope.deletedStations[i];
               station.delete = 0;
               station.active = 1;
+              station.user_entered = 0;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });
@@ -290,6 +292,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               var station = $scope.deletedStations[i];
               station.delete = 0;
               station.active = 0;
+              station.user_entered = 0;
               APIFactory.editStation(station).then(function (response){
                   console.log(response);
               });

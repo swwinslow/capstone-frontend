@@ -71,7 +71,8 @@ app.factory('APIFactory', function($http){
                 "stream"        : station.stream,
                 "id"            : station.id,
                 "active"        : station.active,
-                "delete"        : station.delete
+                "delete"        : station.delete,
+                "user_entered"  : station.user_entered
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'

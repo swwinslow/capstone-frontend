@@ -312,6 +312,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         $scope.updateStation = function(station){
           station.active = 1;
           station.delete = 0;
+          station.user_entered = 0;
           for(var i = 0; i < $scope.activeStations.length; i++){
             if($scope.activeStations[i].id == station.id){
               $scope.activeStations[i].edit = true;
@@ -336,6 +337,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   var station = $scope.activeStations[i];
                   station.delete = 1;
                   station.active = 0;
+                  station.user_entered = 0;
                   $scope.activeStations.splice(i,1);
                   APIFactory.editStation(station).then(function (response){
                       //todo fix data
@@ -360,6 +362,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   var station = $scope.activeStations[i];
                   station.delete = 0;
                   station.active = 0;
+                  station.user_entered = 0;
                   $scope.activeStations.splice(i,1);
                   APIFactory.editStation(station).then(function (response){
                     //todo fix data
