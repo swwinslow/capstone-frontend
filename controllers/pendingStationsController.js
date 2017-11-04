@@ -286,6 +286,7 @@
           }, function (error){
             //todo error message
           });
+          $route.reload();
         }
 
         $scope.deleteStation = function(id) {
@@ -302,6 +303,8 @@
               break;
             }
           }
+          $route.reload();
+
         };
 
         $scope.activateStation = function(id) {

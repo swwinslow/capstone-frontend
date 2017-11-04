@@ -201,7 +201,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
         APIFactory.getUserEnteredPendingInformation().then(function (response){
           var data = response.data.user_entered_pending;
 
-          if(data.length > 0){
+          if(data.length   > 0){
             $scope.length = data.length;
             $scope.userEnteredPending = true;
             setTimeout(stopShowingInformation, 5000);
@@ -346,6 +346,8 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   });
                 }
               }
+              $route.reload();
+
             } else {
 
             }
@@ -366,12 +368,13 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
                   $scope.activeStations.splice(i,1);
                   APIFactory.editStation(station).then(function (response){
                     //todo fix data
-                      console.log(response);
+                    console.log(response);
                   }, function (error){
 
                   });
                 }
               }
+              $route.reload();
             } else {
 
             }

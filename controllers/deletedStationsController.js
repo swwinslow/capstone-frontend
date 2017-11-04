@@ -28,15 +28,27 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
         $scope.selectedTypeData = [];
         $scope.selectedStateData = [];
 
+        $scope.firstTimeGeo = false;
+
         $scope.addGenre = function (genre){
 
           var found = false;
+          console.log($scope.selectedGenreData.length);
 
           if($scope.selectedGenreData.length == $scope.genreArray.length){
+            console.log($scope.firstTimeGeo);
+            if($scope.firstTimeGeo == false){
+              $scope.firstTimeGeo = true;
+              $scope.selectedGenreData = [];
+              $scope.selectedGenreData.push(genre);
+            } else {
+
+            }
+
+          } else {
+            var count = $scope.firstTimeGeo = true;
             $scope.selectedGenreData = [];
             $scope.selectedGenreData.push(genre);
-          } else {
-            var count = $scope.selectedGenreData.length;
             var found2 = false
             for(var i = 0; i < $scope.selectedGenreData.length; i++){
               //removing the object
@@ -88,6 +100,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
 
         $scope.addOwnership = function (ownership){
           var found = false;
+
 
           if($scope.selectedTypeData.length == $scope.typeArray.length){
             $scope.selectedTypeData = [];
@@ -267,6 +280,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });
+          $route.reload();
 
         }
 
@@ -284,6 +298,7 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               break;
             }
           }
+          $route.reload();
         }
 
         $scope.pendStation = function(id){
@@ -300,21 +315,26 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               break;
             }
           }
+          $route.reload();
         }
 
-        $scope.deleteForever = function(id){
-          console.log('lol');
-          for(var i = 0; i < $scope.deletedStations.length; i++){
-            if($scope.deletedStations[i].id == id){
-              var station = $scope.deletedStations[i];
-              APIFactory.DeleteStationForever(id).then(function (response){
-                  console.log(response);
-              }, function (error){
-                  //todo there is an error
-              });
-              $scope.deletedStations.splice(i,1);
-              break;
+        $scope.rever = function(id){
+          if (confirm("Do you want to change this station to pending") == true) {
+            for(var i = 0; i < $scope.deletedStations.length; i++){
+              if($scope.deletedStations[i].id == id){
+                var station = $scope.deletedStations[i];
+                APIFactory.DeleteStationForever(id).then(function (response){
+                    console.log(response);
+                }, function (error){
+                    //todo there is an error
+                });
+                $scope.deletedStations.splice(i,1);
+                break;
+              }
             }
+            $route.reload();
+          } else {
+
           }
         }
 
