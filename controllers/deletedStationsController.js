@@ -277,6 +277,17 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
               $scope.deletedStations[i].edit = false;
             }
           }
+          var slogan = station.slogan;
+          var startSlogan = slogan.startsWith('"') || slogan.startsWith("'");
+          var endSlogan = slogan.endsWith('"') || slogan.endsWith("'");
+          if(startSlogan == true){
+            slogan = slogan.substring(1);
+          }
+          if(endSlogan == true){
+            slogan = slogan.substring(0, slogan.length - 1);
+          }
+          station.slogan = slogan;
+
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           });

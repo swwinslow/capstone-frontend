@@ -281,6 +281,18 @@
               $scope.pendingStations[i].edit = true;
             }
           }
+          
+          var slogan = station.slogan;
+          var startSlogan = slogan.startsWith('"') || slogan.startsWith("'");
+          var endSlogan = slogan.endsWith('"') || slogan.endsWith("'");
+          if(startSlogan == true){
+            slogan = slogan.substring(1);
+          }
+          if(endSlogan == true){
+            slogan = slogan.substring(0, slogan.length - 1);
+          }
+          station.slogan = slogan;
+
           APIFactory.editStation(station).then(function (response){
               console.log(response);
           }, function (error){

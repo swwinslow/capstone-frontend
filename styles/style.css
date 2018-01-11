@@ -108,6 +108,11 @@ input[type="text"][disabled]{
   border: 2px solid #ffffff;
 }
 
+td button{
+  margin:0 auto;
+  display:block;
+}
+
 .add-station-btn{
   background: #22477e;
   padding: 8px;
@@ -188,6 +193,10 @@ input[type="search"]{
   color: #ffffff;
   text-align: center;
   font-size: 18px;
+}
+
+.pending-alert h4{
+  margin: 10px;
 }
 
 .stations-page{
