@@ -319,7 +319,22 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.editMode = false;
             }
           }
+<<<<<<< HEAD
             
+=======
+
+          var slogan = station.slogan;
+          var startSlogan = slogan.startsWith('"') || slogan.startsWith("'");
+          var endSlogan = slogan.endsWith('"') || slogan.endsWith("'");
+          if(startSlogan == true){
+            slogan = slogan.substring(1);
+          }
+          if(endSlogan == true){
+            slogan = slogan.substring(0, slogan.length - 1);
+          }
+          station.slogan = slogan;
+
+>>>>>>> 0c88290ae6c4d411b2d7cd6de6da7db3b3b7ce93
           APIFactory.editStation(station).then(function (response){
               //todo FIX DATA
           }, function (error){

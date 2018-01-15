@@ -58,9 +58,8 @@
 
   <div class="container" ng-show="userEnteredPending">
     <div class="row">
-      <div class="col-12 pending-alert" color="white">
-        <!-- Kristen... can you make the font white -->
-        <a href="#/pending"><h3 color:white;>There are {{length}} user entered pending stations. </h3></a>
+      <div class="col-12 pending-alert">
+        <a href="#/pending" style="color:#ffffff;"><h4>There are {{length}} user entered pending stations. </h4></a>
       </div>
     </div>
   </div>
@@ -133,7 +132,7 @@
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>
             </td>
-            <td><button ng-click="pendingStation(station.id)" > Pending </button></td>
+            <td><button ng-click="pendingStation(station.id)">Pending</button></td>
             <td class="delete-btn"><button ng-click="deleteStation(station.id)" > Delete </button></td>
           </tr>
         </table>
