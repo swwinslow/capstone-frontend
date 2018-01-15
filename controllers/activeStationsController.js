@@ -319,6 +319,7 @@ app.controller('activeStationsController', function($scope, $timeout,  APIFactor
               $scope.editMode = false;
             }
           }
+            
           APIFactory.editStation(station).then(function (response){
               //todo FIX DATA
           }, function (error){
