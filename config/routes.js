@@ -29,6 +29,14 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
       }
 
   })
+  .when("/submit", {
+      templateUrl : "views/submit.html",
+      controller: "submitStationController"
+  })
+  .when("/report", {
+      templateUrl : "views/report.html",
+      controller: "reportController"
+  })
   .otherwise({
     templateUrl : "views/404.html",
     controller: "404Controller"
