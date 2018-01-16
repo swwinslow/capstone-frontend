@@ -1,25 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Station Submission Page</title>
+  <title>Station Submission/Report Page</title>
 </head>
 <style>
+  h1{
+    text-align: center;
+    font-size: 30px;
+  }
+  h2{
+    font-weight: lighter !important;
+  }
+  body{
+    font-family: "Open Sans", "Montserrat", "Poppins", sans-serif;
+    font-size: 20px;
+  }
   input{
     border: 1px solid black;
+    margin: 5px;
   }
 </style>
 <body>
-  <h1>Station Submission Page</h1>
-  <form>
-    Frequency: <input type="text" name="frequency" required><br>
-    Name: <input type="text" name="name" required><br>
-    Abbreviation: <input type="text" name="abbreviation" required><br>
-    City: <input type="text" name="city" required><br>
-    State: <input type="text" name="state" required><br>
-    Slogan: <input type="text" name="slogan" required><br>
-    Type: <input type="text" name="type" required><br>
-    Genre: <input type="text" name="genre" required><br>
-    Stream: <input type="text" name="stream" required><br>
-  </form>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1>MIDDLETOWN MUSIC</h1>
+        On his site - table - station, wrong, comment, done
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <h2>Station Submission Page</h2>
+        <form>
+          Frequency: <input type="text" name="frequency" required><br>
+          Name: <input type="text" name="name" required><br>
+          Abbreviation: <input type="text" name="abbreviation" required><br>
+          City: <input type="text" name="city" required><br>
+          State: <input type="text" name="state" required><br>
+          Slogan: <input type="text" name="slogan" required><br>
+          Type: <input type="text" name="type" required><br>
+          Genre: <input type="text" name="genre" required><br>
+          Stream: <input type="text" name="stream" required><br>
+        </form>
+      </div>
+      <div class="col-6">
+        <h2>Report a Broken Station</h2>
+        What's Wrong?
+        <form>
+          drop down of stations
+          two radio buttons - broken station and wrong data
+          comment text box
+          submit
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
