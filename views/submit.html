@@ -10,6 +10,8 @@
   }
   h2{
     font-weight: lighter !important;
+    margin-top: 0;
+    margin-bottom: 10px;
   }
   body{
     font-family: "Open Sans", "Montserrat", "Poppins", sans-serif;
@@ -25,35 +27,39 @@
     <div class="row">
       <div class="col-12">
         <h1>MIDDLETOWN MUSIC</h1>
-        On his site - table - station, wrong, comment, done
         <hr>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-6">
-        <h2>Station Submission Page</h2>
+      <div class="col-6" ng-controller='pendingStationsController'>
+        <h2>Station Submission</h2>
         <form>
-          Frequency: <input type="text" name="frequency" required><br>
-          Name: <input type="text" name="name" required><br>
-          Abbreviation: <input type="text" name="abbreviation" required><br>
-          City: <input type="text" name="city" required><br>
-          State: <input type="text" name="state" required><br>
-          Slogan: <input type="text" name="slogan" required><br>
-          Type: <input type="text" name="type" required><br>
-          Genre: <input type="text" name="genre" required><br>
-          Stream: <input type="text" name="stream" required><br>
+          Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
+          Name: <input ng-model="createNewStation.long_name" type="text" required><br>
+          Abbreviation: <input ng-model="createNewStation.short_name" type="text" required><br>
+          City: <input ng-model="createNewStation.city" type="text" required><br>
+          State: <input ng-model="createNewStation.state" type="text" required><br>
+          Slogan: <input ng-model="createNewStation.slogan" type="text" required><br>
+          Type: <input ng-model="createNewStation.type" type="text" required><br>
+          Genre: <input ng-model="createNewStation.genre" type="text" required><br>
+          Stream: <input ng-model="createNewStation.stream" type="text" required><br>
+          <input type="submit" value="Submit" ng-click="createPendingStation(createNewStation)">
         </form>
       </div>
-      <div class="col-6">
-        <h2>Report a Broken Station</h2>
+      <div class="col-6" ng-controller='activeStationsController'>
+        <h2>Report an Issue</h2>
         What's Wrong?
         <form>
-          drop down of stations
-          two radio buttons - broken station and wrong data
-          comment text box
-          submit
+          <select>
+            <option name="stations" ng-repeat="station in activeStations" ng-show='showActive' ng-model="station.frequency">{{station.frequency}} {{station.long_name}}</option>
+          </select><br>
+          <input type="radio" name="issue" value="broken" checked> Broken Station<br>
+          <input type="radio" name="issue" value="wrong"> Wrong Station Data<br>
+          Comments:<br>
+          <textarea rows="4" cols="50"></textarea><br>
+          <input type="submit" value="Submit">
         </form>
       </div>
     </div>
