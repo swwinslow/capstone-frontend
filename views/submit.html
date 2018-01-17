@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Station Submission/Report Page</title>
+  <title>Station Submission</title>
 </head>
 <style>
   h1{
@@ -33,7 +33,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-6" ng-controller='pendingStationsController'>
+      <div class="col-6" ng-controller='submitStationController'>
         <h2>Station Submission</h2>
         <form>
           Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
@@ -48,20 +48,7 @@
           <input type="submit" value="Submit" ng-click="createPendingStation(createNewStation)">
         </form>
       </div>
-      <div class="col-6" ng-controller='activeStationsController'>
-        <h2>Report an Issue</h2>
-        What's Wrong?
-        <form>
-          <select>
-            <option name="stations" ng-repeat="station in activeStations" ng-show='showActive' ng-model="station.frequency">{{station.frequency}} {{station.long_name}}</option>
-          </select><br>
-          <input type="radio" name="issue" value="broken" checked> Broken Station<br>
-          <input type="radio" name="issue" value="wrong"> Wrong Station Data<br>
-          Comments:<br>
-          <textarea rows="4" cols="50"></textarea><br>
-          <input type="submit" value="Submit">
-        </form>
-      </div>
+      <!-- KRISTEN I moved this to the reporting page -->
     </div>
   </div>
 </body>

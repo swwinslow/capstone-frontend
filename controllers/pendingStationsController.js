@@ -343,6 +343,7 @@
           //todo: validate DATA!!!!!
           station.delete = 0;
           station.active = 0;
+          station.user_entered = 0;
           APIFactory.createStation(station).then(function (response){
               console.log(response.data.stations[0]);
               $scope.createNewStation = "";

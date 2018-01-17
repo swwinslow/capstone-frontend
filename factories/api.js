@@ -95,7 +95,8 @@ app.factory('APIFactory', function($http){
                   "stream"        : station.stream,
                   "type"          : station.type,
                   "genre"         : station.genre,
-                  "active"        : station.active
+                  "active"        : station.active,
+                  "user_entered"  : station.user_entered
               }),
               headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
