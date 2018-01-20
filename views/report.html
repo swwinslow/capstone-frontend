@@ -1,53 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Station Submission/Report Page</title>
-</head>
-<style>
-    h1{
-        text-align: center;
-        font-size: 30px;
-    }
-    h2{
-        font-weight: lighter !important;
-        margin-top: 0;
-        margin-bottom: 10px;
-    }
-    body{
-        font-family: "Open Sans", "Montserrat", "Poppins", sans-serif;
-        font-size: 20px;
-    }
-    input{
-        border: 1px solid black;
-        margin: 5px;
-    }
-</style>
-<body>
-<div class="container">
+<div class="report">
+  <div class="background-overlay">
+<div class="container background">
     <div class="row">
         <div class="col-12">
             <h1>MIDDLETOWN MUSIC</h1>
             <hr>
-        </div>
+            <div class="report-form">
+              <div ng-controller='reportController'>
+                <h2><strong>Report an Issue</strong></h2>
+                <p>We thank you for helping us perfect the Middletown Radio Application. Please fill out the form below and we will take a look at it. Thank you!</p>
+                <hr style="border-top: 1px solid #ebebeb;">
+                <form>
+                <p>Which station is having an issue?<br>
+                  <select>
+                      <option name="stations" ng-repeat="station in activeStations" ng-show='showActive' ng-model="station.frequency" value="station.frequency">{{station.frequency}} {{station.long_name}}</option>
+                  </select><br>
+                </p>
+                <p style="margin-bottom: 0px;">What is wrong with the station?</p>
+                  <input type="radio" name="issue" value="broken" checked>Broken Station<br>
+                  <input type="radio" name="issue" value="wrong"> Wrong Station Data<br>
+                <p style="margin-bottom: 0px;">Comments:</p>
+                  <textarea rows="4" cols="50"></textarea><br>
+                  <input type="submit" value="Report">
+                </form>
+              </div>
+            </div>
+      </div>
     </div>
 </div>
-<div class="container">
-    <div class="row">
-        <div class="col-6" ng-controller='reportController'>
-            <h2>Report an Issue</h2>
-            What's Wrong?
-            <form>
-                <select>
-                    <option name="stations" ng-repeat="station in activeStations" ng-show='showActive' ng-model="station.frequency">{{station.frequency}} {{station.long_name}}</option>
-                </select><br>
-                <input type="radio" name="issue" value="broken" checked> Broken Station<br>
-                <input type="radio" name="issue" value="wrong"> Wrong Station Data<br>
-                Comments:<br>
-                <textarea rows="4" cols="50"></textarea><br>
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
 </div>
-</body>
-</html>
+</div>
