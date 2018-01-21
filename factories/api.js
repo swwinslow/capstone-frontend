@@ -6,7 +6,7 @@ app.factory('APIFactory', function($http){
   data.getAllStations = function() {
     return $http.get(baseURL + '/GetAllStations.php');
   }
-  
+
 
   data.getInformation = function() {
     return $http.get(baseURL + '/GetInformation.php');
@@ -56,6 +56,21 @@ app.factory('APIFactory', function($http){
     return( source );
     }
 
+    data.reportStation = function (data) {
+        return $http({
+            method: "POST",
+            url: baseURL + '/ReportStation.php',
+            data: serializeData ({
+                "long_name"    : data.long_name,
+                "broken"       : data.broken,
+                "comment"    : data.comment
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    };
+
   data.editStation = function (station) {
         return $http({
             method: "POST",
@@ -73,13 +88,15 @@ app.factory('APIFactory', function($http){
                 "id"            : station.id,
                 "active"        : station.active,
                 "delete"        : station.delete,
-                "user_entered"  : station.user_entered
+                "user_entered"  : station.user_entered,
+                "session_id"    : $rootScope.userSessionId,
+                "session_key"   : $rootScope.userSessionKey
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
-    }
+    };
 
     data.createStation = function (station) {
           return $http({
@@ -96,7 +113,9 @@ app.factory('APIFactory', function($http){
                   "type"          : station.type,
                   "genre"         : station.genre,
                   "active"        : station.active,
-                  "user_entered"  : station.user_entered
+                  "user_entered"  : station.user_entered,
+                  "session_id"    : $rootScope.userSessionId,
+                  "session_key"   : $rootScope.userSessionKey
               }),
               headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
@@ -109,7 +128,9 @@ app.factory('APIFactory', function($http){
                 method: "POST",
                 url: baseURL + '/DeleteStationForever.php',
                 data: serializeData ({
-                    "id"    : id
+                    "id"    : id,
+                    "session_id"    : $rootScope.userSessionId,
+                    "session_key"   : $rootScope.userSessionKey
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

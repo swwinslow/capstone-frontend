@@ -329,11 +329,12 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
           $route.reload();
         }
 
-        $scope.rever = function(id){
-          if (confirm("Do you want to change this station to pending") == true) {
+        $scope.deleteForever = function(id){
+          if (confirm("Do you want to delete the station for forever:") == true) {
             for(var i = 0; i < $scope.deletedStations.length; i++){
               if($scope.deletedStations[i].id == id){
                 var station = $scope.deletedStations[i];
+                console.log("asd");
                 APIFactory.DeleteStationForever(id).then(function (response){
                     console.log(response);
                 }, function (error){
@@ -348,5 +349,4 @@ app.controller('deletedStationsController', function($scope, $timeout,  APIFacto
 
           }
         }
-
 });
