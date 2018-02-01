@@ -1,4 +1,4 @@
-app.controller('submitStationController', function($scope, APIFactory) {
+app.controller('submitStationController', function($scope, APIFactory, $route) {
 
     $scope.createPendingStation = function(station){
         //todo: validate DATA!!!!!
@@ -9,7 +9,6 @@ app.controller('submitStationController', function($scope, APIFactory) {
             console.log(response.data.stations[0]);
             $scope.createNewStation = "";
             $scope.addStation = false;
-            $scope.pendingStations.push(response.data.stations[0]);
             window.alert("Station Created");
             $route.reload();
         }, function (error){

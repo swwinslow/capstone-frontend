@@ -1,4 +1,4 @@
-app.controller('reportController', function($scope, APIFactory) {
+app.controller('reportController', function($scope, APIFactory, $route) {
 
   APIFactory.getAllStations().then(function (response){
       $scope.allActiveStations = response.data.active;
@@ -21,7 +21,9 @@ app.controller('reportController', function($scope, APIFactory) {
       }
 
       APIFactory.reportStation(data).then(function (response){
-          window.alert("Thanks. The information has been sent.")
+          window.alert("Thanks. The information has been sent.");
+          $route.reload();
+
       });
 
 
