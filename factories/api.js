@@ -1,4 +1,4 @@
-app.factory('APIFactory', function($http){
+app.factory('APIFactory', function($http, $rootScope){
 
   var data = {};
   var baseURL = "http://willshare.com/cs495/MidwestRadioPlayer";
@@ -72,7 +72,11 @@ app.factory('APIFactory', function($http){
     };
 
   data.editStation = function (station) {
-        return $http({
+      console.log($rootScope.userSessionId);
+      console.log($rootScope.userSessionKey);
+      console.log('asdf');
+
+      return $http({
             method: "POST",
             url: baseURL + '/EditSingleStation.php',
             data: serializeData ({
@@ -113,7 +117,7 @@ app.factory('APIFactory', function($http){
                   "type"          : station.type,
                   "genre"         : station.genre,
                   "active"        : station.active,
-                  "user_entered"  : station.user_entered,
+                  "user_entered"  : 0,
                   "session_id"    : $rootScope.userSessionId,
                   "session_key"   : $rootScope.userSessionKey
               }),
@@ -122,6 +126,29 @@ app.factory('APIFactory', function($http){
               }
           });
       }
+
+    data.UEAddStation = function (station) {
+        return $http({
+            method: "POST",
+            url: baseURL + '/UEAddStation.php',
+            data: serializeData ({
+                "short_name"    : station.short_name,
+                "long_name"     : station.long_name,
+                "frequency"     : station.frequency,
+                "city"          : station.city,
+                "state"         : station.state,
+                "slogan"        : station.slogan,
+                "stream"        : station.stream,
+                "type"          : station.type,
+                "genre"         : station.genre,
+                "active"        : station.active,
+                "user_entered"  : 1
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    }
 
       data.DeleteStationForever = function (id) {
             return $http({

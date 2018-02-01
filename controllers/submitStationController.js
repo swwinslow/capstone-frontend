@@ -5,7 +5,7 @@ app.controller('submitStationController', function($scope, APIFactory) {
         station.delete = 0;
         station.active = 0;
         station.user_entered = 1;
-        APIFactory.createStation(station).then(function (response){
+        APIFactory.UEAddStation(station).then(function (response){
             console.log(response.data.stations[0]);
             $scope.createNewStation = "";
             $scope.addStation = false;
