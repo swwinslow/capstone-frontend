@@ -271,3 +271,42 @@ h2 input{
 .report textarea{
   font-size: 16px;
 }
+
+/* SUBMIT */
+.submit h1{
+  text-align: center;
+  font-size: 30px;
+}
+
+.submit h2{
+  font-weight: lighter !important;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.submit{
+  height: 800px;
+  font-family: "Open Sans", "Montserrat", "Poppins", sans-serif;
+  font-size: 20px;
+  background-image: url("/capstone-frontend/radio-background.jpg");
+  background-size: 1700px;
+  color: #ffffff;
+}
+
+.submit input{
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.submit input[type=submit]{
+  font-size: 20px;
+  background: #ffffff;
+  color: #1f3b6d;
+  border-radius: 2px;
+}
+
+.submit input[type=submit]:hover{
+  font-size: 20px;
+  background: #1f3b6d;
+  color: #ffffff;
+}

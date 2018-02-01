@@ -1,36 +1,32 @@
 <div class="report">
   <div class="background-overlay">
-<div class="container background">
-    <div class="row">
-        <div class="col-12">
-            <h1>MIDDLETOWN MUSIC</h1>
-            <hr>
-            <div class="report-form">
-              <div ng-controller='reportController'>
-                <h2><strong>Report an Issue</strong></h2>
-                <p>We thank you for helping us perfect the Middletown Radio Application. Please fill out the form below and we will take a look at it. Thank you!</p>
-                <hr style="border-top: 1px solid #ebebeb;">
-                <form>
-                <p>Which station is having an issue?<br>
-                  <select ng-model="station.long_name" >
-                      <option ng-repeat="station in activeStations" >{{station.long_name}}</option>
-                  </select>
-
-                    <br>
-                </p>
-                <p style="margin-bottom: 0px;">What is wrong with the station?</p>
-                  <input type="radio" name="issue" ng-model="station.broken" value="broken" checked>Broken Station<br>
-                  <input type="radio" name="issue" ng-model="station.broken"  value="wrong"> Wrong Station Data<br>
-                <p style="margin-bottom: 0px;">Comments:</p>
-
-                    <textarea rows="4" cols="50" ng-model="station.comment"></textarea><br>
-
-                    <input type="submit" value="Report" ng-click="reportStation(station)">
-                </form>
-              </div>
-            </div>
-      </div>
+    <div class="container background">
+        <div class="row">
+            <div class="col-12">
+                <h1>MIDDLETOWN MUSIC</h1>
+                <hr>
+                <div class="report-form">
+                  <div ng-controller='reportController'>
+                    <h2><strong>Report an Issue</strong></h2>
+                    <p>We thank you for helping us perfect the Middletown Radio Application. Please fill out the form below and we will take a look at it. Thank you!</p>
+                    <hr style="border-top: 1px solid #ebebeb;">
+                    <form>
+                    <p>Which station is having an issue?<br>
+                      <select>
+                          <option name="stations" ng-repeat="station in activeStations" ng-show='showActive' ng-model="station.frequency" value="station.frequency">{{station.frequency}} {{station.long_name}}</option>
+                      </select><br>
+                    </p>
+                    <p style="margin-bottom: 0px;">What is wrong with the station?</p>
+                      <input type="radio" name="issue" value="broken" checked>Broken Station<br>
+                      <input type="radio" name="issue" value="wrong"> Wrong Station Data<br>
+                    <p style="margin-bottom: 0px;">Comments:</p>
+                      <textarea rows="4" cols="50"></textarea><br>
+                      <input type="submit" value="Report">
+                    </form>
+                  </div>
+                </div>
+          </div>
+        </div>
     </div>
-</div>
-</div>
+  </div>
 </div>

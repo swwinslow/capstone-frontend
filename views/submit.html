@@ -1,55 +1,27 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Station Submission</title>
-</head>
-<style>
-  h1{
-    text-align: center;
-    font-size: 30px;
-  }
-  h2{
-    font-weight: lighter !important;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  body{
-    font-family: "Open Sans", "Montserrat", "Poppins", sans-serif;
-    font-size: 20px;
-  }
-  input{
-    border: 1px solid black;
-    margin: 5px;
-  }
-</style>
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>MIDDLETOWN MUSIC</h1>
-        <hr>
+<div class="submit">
+  <div class="background-overlay">
+    <div class="container background">
+      <div class="row">
+        <div class="col-12">
+          <h1>MIDDLETOWN MUSIC</h1>
+          <hr>
+          <div ng-controller='submitStationController'>
+            <h2>Station Submission</h2>
+            <form>
+              Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
+              Name: <input ng-model="createNewStation.long_name" type="text" required><br>
+              Abbreviation: <input ng-model="createNewStation.short_name" type="text" required><br>
+              City: <input ng-model="createNewStation.city" type="text" required><br>
+              State: <input ng-model="createNewStation.state" type="text" required><br>
+              Slogan: <input ng-model="createNewStation.slogan" type="text" required><br>
+              Type: <input ng-model="createNewStation.type" type="text" required><br>
+              Genre: <input ng-model="createNewStation.genre" type="text" required><br>
+              Stream: <input ng-model="createNewStation.stream" type="text" required><br>
+              <input type="submit" value="Submit" ng-click="createPendingStation(createNewStation)">
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-6" ng-controller='submitStationController'>
-        <h2>Station Submission</h2>
-        <form>
-          Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
-          Name: <input ng-model="createNewStation.long_name" type="text" required><br>
-          Abbreviation: <input ng-model="createNewStation.short_name" type="text" required><br>
-          City: <input ng-model="createNewStation.city" type="text" required><br>
-          State: <input ng-model="createNewStation.state" type="text" required><br>
-          Slogan: <input ng-model="createNewStation.slogan" type="text" required><br>
-          Type: <input ng-model="createNewStation.type" type="text" required><br>
-          Genre: <input ng-model="createNewStation.genre" type="text" required><br>
-          Stream: <input ng-model="createNewStation.stream" type="text" required><br>
-          <input type="submit" value="Submit" ng-click="createPendingStation(createNewStation)">
-        </form>
-      </div>
-      <!-- KRISTEN I moved this to the reporting page -->
-    </div>
-  </div>
-</body>
-</html>
+</div>
