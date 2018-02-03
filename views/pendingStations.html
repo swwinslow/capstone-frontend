@@ -69,6 +69,7 @@
             <th>Type</th>
             <th>Genre</th>
             <th>Stream</th>
+            <th>Website</th>
             <th>Save</th>
           </thead>
 
@@ -82,6 +83,7 @@
             <td><input ng-model="createNewStation.type" type="text" style="width:120px" required></td>
             <td><input ng-model="createNewStation.genre" type="text" style="width:80px" required></td>
             <td><input ng-model="createNewStation.stream" type="text" style="width:80px" required></td>
+            <td><input ng-model="createNewStation.website" type="text" style="width:80px" required></td>
             <td><button ng-click="createPendingStation(createNewStation)"> Pending </button></td>
           </tr>
         </table>
@@ -103,6 +105,7 @@
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
             <th ng-click="sortMethod('stream')">Stream</th>
+            <th ng-click="sortMethod('wesbite')">Website</th>
             <th>Edit</th>
             <th>Make Active</th>
             <th>Delete</th>
@@ -118,6 +121,7 @@
             <td><input type="text" ng-model="station.type" style="width:120px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.genre" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
             <td><input type="text" ng-model="station.stream" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
+            <td><input type="text" ng-model="station.website" style="width:80px" ng-class="{enteredStation: station.isUserEntered == 'true'}" ng-disabled="station.edit" required ></td>
             <td>
               <button ng-click="editStation(station.id)" ng-hide="!station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="station.edit"> Save </button>

@@ -89,6 +89,7 @@ app.factory('APIFactory', function($http, $rootScope){
                 "type"          : station.type,
                 "genre"         : station.genre,
                 "stream"        : station.stream,
+                "website"        : station.website,
                 "id"            : station.id,
                 "active"        : station.active,
                 "delete"        : station.delete,
@@ -114,6 +115,7 @@ app.factory('APIFactory', function($http, $rootScope){
                   "state"         : station.state,
                   "slogan"        : station.slogan,
                   "stream"        : station.stream,
+                  "website"       : station.website,
                   "type"          : station.type,
                   "genre"         : station.genre,
                   "active"        : station.active,
@@ -141,6 +143,7 @@ app.factory('APIFactory', function($http, $rootScope){
                 "stream"        : station.stream,
                 "type"          : station.type,
                 "genre"         : station.genre,
+                "website"       : station.website,
                 "active"        : station.active,
                 "user_entered"  : 1
             }),

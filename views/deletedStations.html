@@ -70,6 +70,7 @@
             <th ng-click="sortMethod('type')">Type</th>
             <th ng-click="sortMethod('genre')">Genre</th>
             <th ng-click="sortMethod('stream')">Stream</th>
+            <th ng-click="sortMethod('stream')">Website</th>
             <th>Edit</th>
             <th>Move</th>
             <th>Delete Forever</th>
@@ -85,6 +86,7 @@
             <td><input type="text" ng-model="station.type" style="width:120px" ng-disabled="!station.edit" required ></td>
             <td><input type="text" ng-model="station.genre" style="width:80px" ng-disabled="!station.edit" required ></td>
             <td><input type="text" ng-model="station.stream" style="width:80px" ng-disabled="!station.edit" required ></td>
+            <td><input type="text" ng-model="station.website" style="width:80px" ng-disabled="!station.edit" required ></td>
             <td>
               <button ng-click="editStation(station.id)" ng-hide="station.edit"> Edit </button>
               <button ng-click="updateStation(station)" ng-hide="!station.edit"> Save </button>
