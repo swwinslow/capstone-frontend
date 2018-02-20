@@ -10,7 +10,7 @@
             <form>
               Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
               Name: <input ng-model="createNewStation.long_name" type="text" required><br>
-              Abbreviation: <input ng-model="createNewStation.short_name" type="text" required><br>
+              Abbreviation: <input ng-model="createNewStation.short_name" type="text" maxlength="7" required><br>
               City: <input ng-model="createNewStation.city" type="text" required><br>
               State: <input ng-model="createNewStation.state" type="text" required><br>
               Slogan: <input ng-model="createNewStation.slogan" type="text" required><br>
