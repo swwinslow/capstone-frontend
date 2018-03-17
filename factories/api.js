@@ -153,6 +153,20 @@ app.factory('APIFactory', function($http, $rootScope){
         });
     }
 
+    data.changeFirstStation = function (station) {
+        return $http({
+            method: "POST",
+            url: baseURL + '/ChagneFirstStation.php',
+            data: serializeData ({
+                "id"    : station.id,
+                "session_id"    : $rootScope.userSessionId,
+                "session_key"   : $rootScope.userSessionKey
+            }),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+    }
       data.DeleteStationForever = function (id) {
             return $http({
                 method: "POST",

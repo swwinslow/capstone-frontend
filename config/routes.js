@@ -11,9 +11,16 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
       templateUrl : "views/pendingStations.html",
       controller : "pendingStationsController",
       resolve: {
-        'data': isAuthenticated
+          'data': isAuthenticated
       }
   })
+  .when("/first", {
+      templateUrl : "views/first.html",
+      controller : "firstStationController",
+      resolve: {
+          'data': isAuthenticated
+      }
+   })
   .when("/deleted", {
       templateUrl : "views/deletedStations.html",
       controller : "deletedStationsController",
@@ -25,7 +32,7 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
       templateUrl : "views/popular.html",
       controller: "popularController",
       resolve: {
-        'data': isAuthenticated
+          'data': isAuthenticated
       }
 
   })
@@ -45,18 +52,18 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
 
 var isAuthenticated = function ($rootScope, $location, sessionService, APIFactory) {
     var session = sessionService.hasRecentSession();
-    if (session) {
-
-        // $rootScope.isLoggedIn = true;
-        // //API FACTORY CALL
-        // APIFactory.checkSession().then(function (response){
-        // }, function(error){
-        //   $rootScope.redirect = $location.path();
-        //   window.location = "http://willshare.com/cs495/admin/frontend/#/"
-        // });
-
-    } else {
-        $rootScope.redirect = $location.path();
-        $location.path("/login");
-    }
+    // if (session) {
+    //
+        $rootScope.isLoggedIn = true;
+    //     // // //API FACTORY CALL
+    //     // APIFactory.checkSession().then(function (response){
+    //     // }, function(error){
+    //     //   $rootScope.redirect = $location.path();
+    //     //   window.location = "http://willshare.com/cs495/admin/frontend/#/"
+    //     // });
+    //
+    // } else {
+    //     $rootScope.redirect = $location.path();
+    //     $location.path("/login");
+    // }
 };
