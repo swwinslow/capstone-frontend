@@ -6,19 +6,20 @@
           <h1>MIDDLETOWN MUSIC</h1>
           <hr>
           <div ng-controller='submitStationController'>
+            <h2 ng-show="afterSubmit">Thanks for Submission</h2>
             <h2>Station Submission</h2>
             <form>
-              Frequency: <input ng-model="createNewStation.frequency" type="text" required><br>
-              Name: <input ng-model="createNewStation.long_name" type="text" required><br>
-              Abbreviation: <input ng-model="createNewStation.short_name" type="text" maxlength="7" required><br>
-              City: <input ng-model="createNewStation.city" type="text" required><br>
-              State: <input ng-model="createNewStation.state" type="text" required><br>
-              Slogan: <input ng-model="createNewStation.slogan" type="text" required><br>
-              Type: <input ng-model="createNewStation.type" type="text" required><br>
-              Genre: <input ng-model="createNewStation.genre" type="text" required><br>
-              Stream: <input ng-model="createNewStation.stream" type="text" required><br>
-              Website: <input ng-model="createNewStation.website" type="text" required><br>
+              Frequency: <input placeholder="91.3" ng-model="createNewStation.frequency" type="text" required><br>
+              Call Letters: <input placeholder="WCRD" ng-model="createNewStation.short_name" type="text" maxlength="7" required><br>
+              City: <input placeholder="Muncie" ng-model="createNewStation.city" type="text" required><br>
+              State: <input placeholder="IN" ng-model="createNewStation.state" type="text" required><br>
+              Slogan: <input placeholder="Always Better Radio" ng-model="createNewStation.slogan" type="text" required><br>
+              Stream: <input placeholder="http://dvisweb1.bsu.edu:9000/WCRD128k" ng-model="createNewStation.stream" type="text" required><br>
               <input type="submit" value="Submit" ng-click="createPendingStation(createNewStation)">
+              <input hidden ng-model="createNewStation.long_name" type="text" required><br>
+              <input hidden ng-model="createNewStation.type" type="text" required><br>
+              <input hidden ng-model="createNewStation.genre" type="text" required>
+              <input hidden ng-model="createNewStation.website" type="text" required>
             </form>
           </div>
         </div>

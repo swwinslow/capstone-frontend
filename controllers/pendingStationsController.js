@@ -164,10 +164,19 @@
               item.isUserEntered = "true";
               $scope.pendingStations.push(item);
             }
-        // response.data.pendingUE
-            console.log(response);
+
             for(var i = 0; i < $scope.pendingStations.length; i++){
                 $scope.pendingStations[i].edit = true;
+                console.log($scope.pendingStations[i]);
+                if($scope.pendingStations[i].website == null){
+                    $scope.pendingStations[i].website = "n/a";
+                }
+                if($scope.pendingStations[i].genre == null){
+                    $scope.pendingStations[i].genre = "n/a";
+                }
+                if($scope.pendingStations[i].type == null){
+                    $scope.pendingStations[i].type = "n/a";
+                }
             }
         });
 

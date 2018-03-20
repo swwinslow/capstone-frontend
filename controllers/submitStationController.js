@@ -9,7 +9,7 @@ app.controller('submitStationController', function($scope, APIFactory, $route) {
             console.log(response.data.stations[0]);
             $scope.createNewStation = "";
             $scope.addStation = false;
-            window.alert("Station Created");
+            window.alert("Station Created. Thanks for submitting");
             $route.reload();
         }, function (error){
             //todo... fix data
