@@ -58,6 +58,11 @@ a{
   padding-right: 35px;
 }
 
+.menu a.first{
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
 .status button{
   padding: 8px;
 }
