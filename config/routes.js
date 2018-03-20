@@ -34,6 +34,10 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
       resolve: {
           'data': isAuthenticated
       }
+  })
+  .when("/stations", {
+       templateUrl : "views/showStations.html",
+       controller: "showStationsController",
 
   })
   .when("/submit", {

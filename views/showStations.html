@@ -1,0 +1,48 @@
+<div ng-controller='showStationsController' class="popular-page">
+    
+
+    <h1>All Stations</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-9 filters popular">
+                <h2>Search:<input type="search" ng-model="searchKeywordStations"></h2>
+            </div>
+            <div class="col-9 popular-table">
+                <table>
+                    <thead>
+                    <th ng-click="sortMethod('long_name')">Name</th>
+                    <th ng-click="sortMethod('short_name')">Abbreviation</th>
+                    </thead>
+                    <tr ng-repeat="x in activeStations | filter: searchKeywordStations | orderBy: orderBySearch:orderByTerm">
+                        <td>{{x.long_name}}</td>
+                        <td>{{x.short_name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <h1>Favorite Stations</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-9 filters popular">
+                <h2>Search:<input type="search" ng-model="searchKeyword"></h2>
+            </div>
+            <div class="col-9 popular-table">
+                <table>
+                    <thead>
+                    <th>Count</th>
+                    <th ng-click="sortMethod('long_name')">Name</th>
+                    <th ng-click="sortMethod('short_name')">Abbreviation</th>
+                    </thead>
+                    <tr ng-repeat="x in popularArray | filter: searchKeyword | orderBy: orderBySearch:orderByTerm">
+                        <td>{{x.votes}}</td>
+                        <td>{{x.long_name}}</td>
+                        <td>{{x.short_name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
