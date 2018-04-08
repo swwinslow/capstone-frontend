@@ -61,7 +61,7 @@ app.factory('APIFactory', function($http, $rootScope){
             method: "POST",
             url: baseURL + '/ReportStation.php',
             data: serializeData ({
-                "long_name"    : data.long_name,
+                "long_name"    : data.frequency,
                 "broken"       : data.broken,
                 "comment"    : data.comment
             }),
@@ -135,15 +135,10 @@ app.factory('APIFactory', function($http, $rootScope){
             url: baseURL + '/UEAddStation.php',
             data: serializeData ({
                 "short_name"    : station.short_name,
-                "long_name"     : station.long_name,
                 "frequency"     : station.frequency,
                 "city"          : station.city,
                 "state"         : station.state,
                 "slogan"        : station.slogan,
-                "stream"        : station.stream,
-                "type"          : station.type,
-                "genre"         : station.genre,
-                "website"       : station.website,
                 "active"        : station.active,
                 "user_entered"  : 1
             }),
