@@ -56,18 +56,18 @@ app.config(['$routeProvider', function($routeProvider, sessionService) {
 
 var isAuthenticated = function ($rootScope, $location, sessionService, APIFactory) {
     var session = sessionService.hasRecentSession();
-    // if (session) {
-    //
+    if (session) {
+
         $rootScope.isLoggedIn = true;
-    //     // // //API FACTORY CALL
-    //     // APIFactory.checkSession().then(function (response){
-    //     // }, function(error){
-    //     //   $rootScope.redirect = $location.path();
-    //     //   window.location = "http://willshare.com/cs495/admin/frontend/#/"
-    //     // });
-    //
-    // } else {
-    //     $rootScope.redirect = $location.path();
-    //     $location.path("/login");
-    // }
+        // //API FACTORY CALL
+        APIFactory.checkSession().then(function (response){
+        }, function(error){
+          $rootScope.redirect = $location.path();
+          window.location = "http://willshare.com/cs495/admin/frontend/#/"
+        });
+
+    } else {
+        $rootScope.redirect = $location.path();
+        $location.path("/login");
+    }
 };

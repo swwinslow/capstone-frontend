@@ -4,32 +4,31 @@ app.factory('APIFactory', function($http, $rootScope){
   var baseURL = "http://willshare.com/cs495/MidwestRadioPlayer";
 
   data.getAllStations = function() {
-    return $http.get(baseURL + '/GetAllStations.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
 
 
   data.getInformation = function() {
-    return $http.get(baseURL + '/GetInformation.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
 
   data.getPendingInformation = function() {
-    return $http.get(baseURL + '/GetPendingInformation.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
 
   data.getDeletedInformation = function() {
-    return $http.get(baseURL + '/GetDeletedInformation.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
 
   data.getUserEnteredPendingInformation = function() {
-    return $http.get(baseURL + '/GetUEPendingStations.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
-
-  //
 
   data.getPopular = function(){
-    return $http.get(baseURL + '/GetAllPopular.php');
+    return $http.get(baseURL + 'XX BACKEND POINT / DATA XX');
   }
 
+  //method needed to format data
   function serializeData( data ) {
     // If this is not an object, defer to native stringification.
     if ( ! angular.isObject( data ) ) {
@@ -59,11 +58,9 @@ app.factory('APIFactory', function($http, $rootScope){
     data.reportStation = function (data) {
         return $http({
             method: "POST",
-            url: baseURL + '/ReportStation.php',
+            url: baseURL + 'XX BACKEND POINT / DATA XX',
             data: serializeData ({
-                "long_name"    : data.frequency,
-                "broken"       : data.broken,
-                "comment"    : data.comment
+                //XX BACKEND POINT / DATA XX
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -78,24 +75,9 @@ app.factory('APIFactory', function($http, $rootScope){
 
       return $http({
             method: "POST",
-            url: baseURL + '/EditSingleStation.php',
+            url: baseURL + 'XX BACKEND POINT / DATA XX',
             data: serializeData ({
-                "short_name"    : station.short_name,
-                "long_name"     : station.long_name,
-                "frequency"     : station.frequency,
-                "city"          : station.city,
-                "state"         : station.state,
-                "slogan"        : station.slogan,
-                "type"          : station.type,
-                "genre"         : station.genre,
-                "stream"        : station.stream,
-                "website"        : station.website,
-                "id"            : station.id,
-                "active"        : station.active,
-                "delete"        : station.delete,
-                "user_entered"  : station.user_entered,
-                "session_id"    : $rootScope.userSessionId,
-                "session_key"   : $rootScope.userSessionKey
+                //XX BACKEND POINT / DATA XX
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -106,22 +88,9 @@ app.factory('APIFactory', function($http, $rootScope){
     data.createStation = function (station) {
           return $http({
               method: "POST",
-              url: baseURL + '/AddStation.php',
+              url: baseURL + 'XX BACKEND POINT / DATA XX',
               data: serializeData ({
-                  "short_name"    : station.short_name,
-                  "long_name"     : station.long_name,
-                  "frequency"     : station.frequency,
-                  "city"          : station.city,
-                  "state"         : station.state,
-                  "slogan"        : station.slogan,
-                  "stream"        : station.stream,
-                  "website"       : station.website,
-                  "type"          : station.type,
-                  "genre"         : station.genre,
-                  "active"        : station.active,
-                  "user_entered"  : 0,
-                  "session_id"    : $rootScope.userSessionId,
-                  "session_key"   : $rootScope.userSessionKey
+                  //XX BACKEND POINT / DATA XX
               }),
               headers: {
                   'Content-Type': 'application/x-www-form-urlencoded'
@@ -132,15 +101,9 @@ app.factory('APIFactory', function($http, $rootScope){
     data.UEAddStation = function (station) {
         return $http({
             method: "POST",
-            url: baseURL + '/UEAddStation.php',
+            url: baseURL + 'XX BACKEND POINT / DATA XX',
             data: serializeData ({
-                "short_name"    : station.short_name,
-                "frequency"     : station.frequency,
-                "city"          : station.city,
-                "state"         : station.state,
-                "slogan"        : station.slogan,
-                "active"        : station.active,
-                "user_entered"  : 1
+                    // XX BACKEND POINT / DATA XX
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -151,11 +114,9 @@ app.factory('APIFactory', function($http, $rootScope){
     data.changeFirstStation = function (station) {
         return $http({
             method: "POST",
-            url: baseURL + '/ChagneFirstStation.php',
+            url: baseURL + 'XX BACKEND POINT / DATA XX',
             data: serializeData ({
-                "id"    : station.id,
-                "session_id"    : $rootScope.userSessionId,
-                "session_key"   : $rootScope.userSessionKey
+                    // XX BACKEND POINT / DATA XX
             }),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -165,11 +126,9 @@ app.factory('APIFactory', function($http, $rootScope){
       data.DeleteStationForever = function (id) {
             return $http({
                 method: "POST",
-                url: baseURL + '/DeleteStationForever.php',
+                url: baseURL + 'XX BACKEND POINT / DATA XX',
                 data: serializeData ({
-                    "id"    : id,
-                    "session_id"    : $rootScope.userSessionId,
-                    "session_key"   : $rootScope.userSessionKey
+                        // XX BACKEND POINT / DATA XX
                 }),
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -180,10 +139,9 @@ app.factory('APIFactory', function($http, $rootScope){
         data.checkSession = function () {
               return $http({
                   method: "POST",
-                  url: baseURL + '/SessionCheck.php',
+                  url: baseURL + 'XX BACKEND POINT / DATA XX',
                   data: serializeData ({
-                    "session_id"    : $rootScope.userSessionId,
-                    "session_key"   : $rootScope.userSessionKey
+                          // XX BACKEND POINT / DATA XX
                   }),
                   headers: {
                       'Content-Type': 'application/x-www-form-urlencoded'
