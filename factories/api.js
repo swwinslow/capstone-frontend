@@ -1,7 +1,7 @@
 app.factory('APIFactory', function($http, $rootScope){
 
   var data = {};
-  var baseURL = "http://willshare.com/cs495/MidwestRadioPlayer";
+  var baseURL = "http://willshare.com/cs495/SouthWestRadioPlayer";
 
   data.getAllStations = function() {
     return $http.get(baseURL + '/GetAllStations.php');
